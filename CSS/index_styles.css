@@ -1,0 +1,69 @@
+body {
+    color: white;
+    background-image: url('../images/bg2.jpg');
+    background-size: 100% 100%;
+    height: 100vh;
+    width: 100%;
+    background-color: #06121C
+}
+
+h1 {
+    font-size: 40px;
+    font-family: 'Futura', serif;
+    font-style: italic;
+    float: left;
+    margin-top: auto;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 20px;
+    margin-top: auto;
+    margin-left: 960px;
+    padding: 15px;
+}
+
+ul a{
+    float: left;
+    padding: 10px;
+    margin-top: auto;
+    margin-right: 10px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: orange;
+}
+
+a:active {
+    color: blue;
+}
+
+h2 {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Helvetica Neue', serif;
+}
+
+main {
+    text-align: center;
+}
+
+#text_input {
+    width: 500px;
+    font-size: 20px;
+    transition: border-color 0.3s ease;
+}
+
+p {
+    text-align: right;
+}
