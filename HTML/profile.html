@@ -29,14 +29,69 @@
         a:active {
             color: blue;
         }
+
+        li, a {
+            font-family: 'Futura', serif;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 3%;
+        }
+
+        .logo {
+            font-size: 50px;
+            font-family: 'Futura', serif;
+            font-style: italic;
+        }
+
+        .topnav ul {
+            /*overflow: hidden;*/
+            list-style: none;
+        }
+
+        /* Style the topnav links */
+        .topnav ul li {
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        /* Change color on hover */
+        .topnav ul li a {
+            transition: all 0.3s ease 0s;
+            color: white;
+        }
+
+        .topnav ul li a:hover {
+            padding: 15px 17px;
+            border-radius: 25px;
+            background-color: orange;
+        }
+
     </style>
 </head>
 <body>
+
+<header>
+    <h1><a class="logo" href="../index.html">FuryType</a></h1>
+
+    <div class="topnav">
+        <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="register.html">Login/Register</a></li>
+        </ul>
+    </div>
+
+</header>
+
 <main>
-    <header>
-        <h1 style="font-size: 40px; font-family: 'Futura', serif; font-style: italic"><a href="../index.html">FuryType</a>
-        </h1>
-    </header>
     <h1 style="text-align: center; font-family: Helvetica serif; font-size: 40px">Profile</h1>
 
     <div>

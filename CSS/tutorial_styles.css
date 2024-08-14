@@ -24,33 +24,52 @@ a:active {
     color: blue;
 }
 
-#first_heading {
-    font-size: 40px;
+
+li, a {
+    font-family: 'Futura', serif;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 3%;
+}
+
+.logo {
+    font-size: 50px;
     font-family: 'Futura', serif;
     font-style: italic;
-    float: left;
-    margin-top: auto;
-    padding: 10px;
 }
 
-
-ul {
-    list-style-type: none;
-    font-size: 20px;
-    margin-top: auto;
-    margin-left: 960px;
-    padding: 15px;
+.topnav ul {
+    /*overflow: hidden;*/
+    list-style: none;
 }
 
-ul a{
-    float: left;
-    padding: 10px;
-    margin-top: auto;
-    margin-right: 10px;
+/* Style the topnav links */
+.topnav ul li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+/* Change color on hover */
+.topnav ul li a {
+    transition: all 0.3s ease 0s;
+    color: white;
+}
+
+.topnav ul li a:hover {
+    padding: 15px 17px;
+    border-radius: 25px;
+    background-color: orange;
 }
 
 #second_heading {
-    margin-top: 100px;
+    margin-top: 20px;
     font-family: 'Helvetica Neue', serif;
     text-align: center;
     font-size: 35px
