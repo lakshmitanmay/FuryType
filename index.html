@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuryType</title>
     <link rel="stylesheet" href="CSS/index_styles.css" media="all">
+    <script>
+        function toggle_mode() {
+            const bodyElement = document.getElementsByTagName("body")[0];
+
+            // Check the current color to determine which styles to apply
+            if (bodyElement.classList.contains("body")) {
+                bodyElement.classList.remove("body")
+                bodyElement.classList.add("body2");
+                bodyElement.getElementsByTagName("a")[0].style.color = "black";
+                <!-- bodyElement.getElementsByClassName(".topnav")[0].style.color = "black"; -->
+            } else {
+                bodyElement.classList.remove("body2")
+                bodyElement.classList.add("body")
+                bodyElement.getElementsByTagName("a")[0].style.color = "white";
+
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body class="body">
 
-<header>
-    <h1><a class="logo" href="index.html">FuryType</a></h1>
+    <header>
+        <h1><a class="logo" href="index.html">FuryType</a></h1>
+        <button id = "mode" type="button" onclick="toggle_mode();">☾ / ☼</button>
+        <div class="topnav">
+            <ul>
+                <li><a href="HTML/profile.html">Profile</a></li>
+                <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+                <li><a href="HTML/tutorial.html">Tutorial</a></li>
+                <li><a href="HTML/register.html">Login/Register</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <div class="topnav">
-        <ul>
-            <li><a href="HTML/profile.html">Profile</a></li>
-            <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-            <li><a href="HTML/tutorial.html">Tutorial</a></li>
-            <li><a href="HTML/register.html">Login/Register</a></li>
-        </ul>
-    </div>
-</header>
-
-<!-- hello -->
-<main>
-    <br><br>
-    <h2>Test Your Speed</h2>
-    <form>
-        <label>
-            <input id="text_input" type="text" placeholder="Start Typing Text Here"
-                   required>
-        </label>
-    </form>
-    <br>
-</main>
+    <!-- hello -->
+    <main>
+        <br><br>
+        <h2>Test Your Speed</h2>
+        <form>
+            <label>
+                <input id="text_input" type="text" placeholder="Start Typing Text Here" required>
+            </label>
+        </form>
+        <br>
+    </main>
 
 </body>
+
 </html>
