@@ -60,6 +60,9 @@ header {
     border-radius: 25px;
     background-color: orange;
 }
+a {
+    color: white;
+}
 
 a:visited {
     color: white;
