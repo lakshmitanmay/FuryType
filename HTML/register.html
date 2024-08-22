@@ -1,27 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuryType</title>
-    <link rel="stylesheet" href="../CSS/register.css">
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+    <style>
+        legend {
+            font-size: 30px;
+            font-family: 'Fira Code', serif;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .submit1 {
+            font-size: 25px;
+            width: 150px;
+        }
+
+        #register {
+            text-align: left;
+            float: left;
+            margin-top: 100px;
+            margin-left: 250px;
+            margin-right: 1270px
+        }
+
+        #register input,
+        #login input {
+            margin: 10px;
+            width: 300px;
+            font-size: 20px;
+        }
+
+        #login {
+            text-align: left;
+            float: right;
+            margin-top: -265px;
+            margin-left: 100px;
+            margin-right: 300px
+        }
+
+        #submit_but {
+            margin-top: 500px;
+            margin-left: 640px;
+        }
+
+        #return {
+            font-size: 30px;
+            width: 100px
+        }
+
+        p {
+            text-align: center;
+            font-size: 25px;
+            font-style: italic
+        }
+    </style>
 </head>
-<body>
-<main>
-    <header>
-        <h1><a class="logo" href="../index.html">FuryType</a></h1>
 
-        <div class="topnav">
-            <ul>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-                <li><a href="tutorial.html">Tutorial</a></li>
-            </ul>
-        </div>
+<body class="body">
+    <main>
+        <header>
+            <h1><a class="logo" href="../index.html">FuryType</a></h1>
+            <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+                ☾ / ☼
+            </button>
 
-    </header>
+            <div class="topnav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                </ul>
+            </div>
 
-    <section>
+        </header>
+
+        <section>
             <form id="register" action="../index.html">
                 <fieldset style="border: orange solid">
                     <legend>Register</legend>
@@ -64,14 +125,15 @@
                     </div>
                 </fieldset>
             </form>
-    </section>
+        </section>
 
-    <section id="submit_but">
-        <form action="../index.html">
-            <input id="return" type="submit" value="return">
-        </form>
-    </section>
+        <section id="submit_but">
+            <form action="../index.html">
+                <input id="return" type="submit" value="return">
+            </form>
+        </section>
 
-</main>
+    </main>
 </body>
+
 </html>

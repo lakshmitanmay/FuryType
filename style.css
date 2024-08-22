@@ -60,6 +60,7 @@ header {
     border-radius: 25px;
     background-color: orange;
 }
+
 a {
     color: white;
 }
@@ -76,27 +77,8 @@ a:active {
     color: blue;
 }
 
-h2 {
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Helvetica Neue', serif;
-}
 
-main {
-    text-align: center;
-}
-
-#text_input {
-    width: 500px;
-    font-size: 20px;
-    transition: border-color 0.3s ease;
-}
-
-p {
-    text-align: right;
-}
-
-#mode {
+#theme_switch {
     font-size: 16px;
     margin-top: 5px;
     margin-right: 500px;
@@ -105,10 +87,10 @@ p {
     padding: 5px 12px;
     transition: all 0.3s ease 0s;
     /* background: url('images/toggle.png;') no-repeat center center; */
-    
+
 }
 
-#mode:hover {
-    background-color: orange; /* Darker green on hover */
+#theme_switch:hover {
+    background-color: orange;
+    /* Darker green on hover */
 }
-

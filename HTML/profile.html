@@ -1,159 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Profile</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
     <style>
-        body {
-            color: white;
-            background-image: url('../images/bg2.jpg');
-            background-size: 100% 100%;
-            height: 100vh;
-            width: 100%;
-            background-color: #06121C
-        }
-        a {
-            color: white;
-            text-decoration: none;
-        }
-
-        a:visited {
-            color: white;
-        }
-
-        a:hover {
-            color: orange;
-        }
-
-        a:active {
-            color: blue;
-        }
-
-        li, a {
-            font-family: 'Futura', serif;
-            font-weight: 500;
-            font-size: 18px;
-            text-decoration: none;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0px 3%;
-        }
-
-        .logo {
-            font-size: 50px;
-            font-family: 'Futura', serif;
-            font-style: italic;
-        }
-
-        .topnav ul {
-            /*overflow: hidden;*/
-            list-style: none;
-        }
-
-        /* Style the topnav links */
-        .topnav ul li {
-            display: inline-block;
-            padding: 0px 20px;
-        }
-
-        /* Change color on hover */
-        .topnav ul li a {
-            transition: all 0.3s ease 0s;
-            color: white;
-        }
-
-        .topnav ul li a:hover {
-            padding: 15px 17px;
-            border-radius: 25px;
-            background-color: orange;
-        }
-
     </style>
 </head>
-<body>
 
-<header>
-    <h1><a class="logo" href="../index.html">FuryType</a></h1>
+<body class="body">
 
-    <div class="topnav">
-        <ul>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-            <li><a href="tutorial.html">Tutorial</a></li>
-            <li><a href="register.html">Login/Register</a></li>
-        </ul>
-    </div>
-
-</header>
-
-<main>
-    <h1 style="text-align: center; font-family: Helvetica serif; font-size: 40px">Profile</h1>
-
-    <div>
-        <table style="background-color: lightblue; margin: 0 auto; border: 1px solid black; color: black; font-size: 20px">
-            <tr style="background-color: lightseagreen">
-                <th>wpm</th>
-                <th>raw</th>
-                <th>accuracy</th>
-                <th>consistency</th>
-                <th>chars</th>
-                <th>mode</th>
-                <th>info</th>
-                <th>date</th>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-        </table>
-    </div>
-    <form action="../index.html">
-        <div style="text-align: center">
-            <br><br><br><br><br><br>
-            <input type="submit" value="return" style="font-size: 25px; width: 100px">
+    <header>
+        <h1><a class="logo" href="../index.html">FuryType</a></h1>
+        <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+            ☾ / ☼
+        </button>
+        <div class="topnav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="register.html">Login/Register</a></li>
+            </ul>
         </div>
-    </form>
-</main>
+
+    </header>
+
+    <main>
+        <h1 style="text-align: center; font-family: Helvetica serif; font-size: 40px">Profile</h1>
+
+        <div>
+            <table
+                style="background-color: lightblue; margin: 0 auto; border: 1px solid black; color: black; font-size: 20px">
+                <tr style="background-color: lightseagreen">
+                    <th>wpm</th>
+                    <th>raw</th>
+                    <th>accuracy</th>
+                    <th>consistency</th>
+                    <th>chars</th>
+                    <th>mode</th>
+                    <th>info</th>
+                    <th>date</th>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+        <form action="../index.html">
+            <div style="text-align: center">
+                <br><br><br><br><br><br>
+                <input type="submit" value="return" style="font-size: 25px; width: 100px">
+            </div>
+        </form>
+    </main>
 </body>
+
 </html>

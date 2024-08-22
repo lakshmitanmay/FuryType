@@ -5,32 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuryType</title>
-    <link rel="stylesheet" href="CSS/index_styles.css" media="all">
-    <script>
-        function toggle_mode() {
-            const bodyElement = document.getElementsByTagName("body")[0];
-
-            // Check the current color to determine which styles to apply
-            if (bodyElement.classList.contains("body")) {
-                bodyElement.classList.remove("body")
-                bodyElement.classList.add("body2");
-                bodyElement.getElementsByTagName("a")[0].style.color = "black";
-                <!-- bodyElement.getElementsByClassName(".topnav")[0].style.color = "black"; -->
-            } else {
-                bodyElement.classList.remove("body2")
-                bodyElement.classList.add("body")
-                bodyElement.getElementsByTagName("a")[0].style.color = "white";
-
-            }
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        h2 {
+            text-align: center;
+            font-size: 35px;
+            font-family: 'Helvetica Neue', serif;
         }
-    </script>
+        
+        main {
+            text-align: center;
+        }
+        
+        #text_input {
+            width: 500px;
+            font-size: 20px;
+            transition: border-color 0.3s ease;
+        }
+        
+        p {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body class="body">
-
+    <!-- Header Section -->
     <header>
         <h1><a class="logo" href="index.html">FuryType</a></h1>
-        <button id = "mode" type="button" onclick="toggle_mode();">☾ / ☼</button>
+        <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+            ☾ / ☼
+        </button>
         <div class="topnav">
             <ul>
                 <li><a href="HTML/profile.html">Profile</a></li>
@@ -41,18 +47,13 @@
         </div>
     </header>
 
-    <!-- hello -->
+    <!-- Main Section -->
     <main>
-        <br><br>
         <h2>Test Your Speed</h2>
         <form>
-            <label>
-                <input id="text_input" type="text" placeholder="Start Typing Text Here" required>
-            </label>
+            <input id="text_input" type="text" placeholder="Start Typing Text Here" required>
         </form>
-        <br>
     </main>
-
 </body>
 
 </html>
