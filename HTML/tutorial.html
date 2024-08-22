@@ -1,100 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Settings</title>
+    <title>Tutorial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <script type="text/javascript" src="../script.js"></script>
     <style>
-        #second_heading {
-            margin-top: 20px;
-            font-family: 'Helvetica Neue', serif;
-            text-align: center;
-            font-size: 35px
-        }
-        
-        #steps_div {
-            margin-top: 40px;
-            margin-right: 9600px;
-            background-color: lightblue;
-            float: left;
-            margin-left: 50px
-        }
-        
         #steps_frame {
             border: none;
-            margin: 20px;
+            border-radius: 12px;
+            margin: 40px 9600px 20px 50px;
             height: 400px;
             width: 500px;
+            background-color: lightblue;
+            float: left;
+            padding: 20px;
         }
-        
-        #video_div {
-            margin-top: -400px;
-            margin-right: 100px;
-            float: right
-        }
-        
+
         #youtube_video {
             width: 560px;
             height: 315px;
             border: none;
+            margin-top: -400px;
+            margin-right: 100px;
+            float: right
         }
-        
-        #submit_but {
+
+        form {
+            text-align: center
+        }
+
+        form input {
             font-size: 25px;
             width: 100px;
+            margin-right: 30px;
         }
     </style>
 </head>
 
 <body class="body">
-<header>
-    <h1><a class="logo" href="../index.html">FuryType</a></h1>
-    <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
-        ☾ / ☼
-    </button>
+    <!-- Header Section -->
+    <header>
+        <h1><a class="logo" href="../index.html">FuryType</a></h1>
+        <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+            ☾ / ☼
+        </button>
 
-    <div class="topnav">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-            <li><a href="tutorial.html">Tutorial</a></li>
-            <li><a href="register.html">Login/Register</a></li>
-        </ul>
-    </div>
+        <nav class="topnav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="register.html">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
 
-</header>
-
-
-<main>
-    <h1 id="second_heading">Tutorial</h1>
-    <div id="steps_div">
+    <!-- Main Section -->
+    <main>
+        <h2>Tutorial</h2>
         <iframe id="steps_frame" src="master_typing.html" title="master_typing"></iframe>
-    </div>
-
-    <br><br><br>
-
-    <div id="video_div">
         <iframe id="youtube_video" src="https://www.youtube.com/embed/QAb3ATOpBpE?si=EKZ6IpJN8akG44gd"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-</main>
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </main>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<form action="../index.html">
-    <div style="text-align: center">
-        <br><br><br><br><br><br>
-        <label>
-            <input id="return" type="submit" value="return" style="font-size: 25px; width: 100px">
-        </label>
-    </div>
-</form>
-
-<br>
+    <form action="../index.html">
+        <input class="return" type="submit" value="return">
+    </form>
+    
 </body>
 
 </html>

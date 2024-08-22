@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="script.js"></script>
     <style>
-        h2 {
-            text-align: center;
-            font-size: 35px;
-            font-family: 'Helvetica Neue', serif;
-        }
-        
         main {
             text-align: center;
         }
-        
-        #text_input {
+
+        .input_box {
             width: 500px;
             font-size: 20px;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            color: #333;
+            background-color: #f9f9f9;
             transition: border-color 0.3s ease;
+
         }
-        
-        p {
-            text-align: right;
+
+        .input_box:focus {
+            border-color: #2E8B57;
+            outline: none;
+        }
+
+        .input_box:hover {
+            border-color: orange;
         }
     </style>
 </head>
@@ -37,21 +42,21 @@
         <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
             ☾ / ☼
         </button>
-        <div class="topnav">
+        <nav class="topnav">
             <ul>
                 <li><a href="HTML/profile.html">Profile</a></li>
                 <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
                 <li><a href="HTML/tutorial.html">Tutorial</a></li>
                 <li><a href="HTML/register.html">Login/Register</a></li>
             </ul>
-        </div>
+        </nav>
     </header>
 
     <!-- Main Section -->
     <main>
         <h2>Test Your Speed</h2>
         <form>
-            <input id="text_input" type="text" placeholder="Start Typing Text Here" required>
+            <input class="input_box" type="text" placeholder="Start Typing Text Here" required>
         </form>
     </main>
 </body>

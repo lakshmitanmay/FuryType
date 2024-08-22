@@ -8,92 +8,108 @@
     <link rel="stylesheet" href="../style.css">
     <script type="text/javascript" src="../script.js"></script>
     <style>
+        table {
+            background-color: lightblue;
+            margin: 0 auto;
+            border: 1px solid black;
+            color: black;
+            font-size: 20px
+        }
+
+        .heading {
+            background-color: lightseagreen
+        }
+
+        form {
+            text-align: center
+        }
+
+        form input {
+            font-size: 25px;
+            width: 100px;
+            margin: 30px;
+        }
     </style>
 </head>
 
 <body class="body">
-
+    <!-- Header Section -->
     <header>
         <h1><a class="logo" href="../index.html">FuryType</a></h1>
         <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
             ☾ / ☼
         </button>
-        <div class="topnav">
+        <nav class="topnav">
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
                 <li><a href="tutorial.html">Tutorial</a></li>
                 <li><a href="register.html">Login/Register</a></li>
             </ul>
-        </div>
-
+        </nav>
     </header>
 
+    <!-- Main Section -->
     <main>
-        <h1 style="text-align: center; font-family: Helvetica serif; font-size: 40px">Profile</h1>
+        <h2>Profile</h2>
 
-        <div>
-            <table
-                style="background-color: lightblue; margin: 0 auto; border: 1px solid black; color: black; font-size: 20px">
-                <tr style="background-color: lightseagreen">
-                    <th>wpm</th>
-                    <th>raw</th>
-                    <th>accuracy</th>
-                    <th>consistency</th>
-                    <th>chars</th>
-                    <th>mode</th>
-                    <th>info</th>
-                    <th>date</th>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-        <form action="../index.html">
-            <div style="text-align: center">
-                <br><br><br><br><br><br>
-                <input type="submit" value="return" style="font-size: 25px; width: 100px">
-            </div>
-        </form>
+        <table>
+            <tr class="heading">
+                <th>wpm</th>
+                <th>raw</th>
+                <th>accuracy</th>
+                <th>consistency</th>
+                <th>chars</th>
+                <th>mode</th>
+                <th>info</th>
+                <th>date</th>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </table>
     </main>
+
+    <form action="../index.html">
+        <input type="submit" value="return">
+    </form>
 </body>
 
 </html>
