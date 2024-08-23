@@ -1,0 +1,133 @@
+/* index.html */
+.type_test {
+    text-align: center;
+}
+
+.input_box {
+    width: 500px;
+    font-size: 20px;
+    padding: 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+
+}
+
+.input_box:focus {
+    border-color: #2E8B57;
+    outline: none;
+}
+
+.input_box:hover {
+    border-color: orange;
+}
+
+/* profile.html */
+.metrics {
+    background-color: lightblue;
+    margin: 0 auto;
+    border: 1px solid black;
+    color: black;
+    font-size: 20px
+}
+
+.metrics_heading {
+    background-color: lightseagreen
+}
+
+/* register.html */
+.reg_log {
+    margin-top: 100px;
+    padding: 0px 3%;
+}
+
+.reg_log_leg {
+    font-size: 30px;
+    font-family: 'Fira Code', serif;
+}
+
+.reg_border {
+    border: orange solid;
+}
+
+.log_border {
+    border: aquamarine solid;
+}
+
+.register {
+    float: left;
+    margin-left: 250px;
+    margin-right: 1270px
+}
+
+.login {
+    align-items: left;
+    float: right;
+    margin-top: -370px;
+    margin-left: 100px;
+    margin-right: 300px
+}
+
+.register input,
+.login input {
+    margin: 10px;
+    width: 300px;
+    font-size: 20px;
+}
+
+.reg_log_but {
+    text-align: center;
+}
+
+.reg_log_but input {
+    font-size: 25px;
+    width: 150px;
+}
+
+.or {
+    text-align: center;
+    font-size: 25px;
+    font-style: italic
+}
+
+.google_img {
+    margin-right: 20px
+}
+
+/* tutorial.html */
+.steps_frame {
+    border: none;
+    border-radius: 12px;
+    margin: 40px 9600px 20px 50px;
+    height: 400px;
+    width: 500px;
+    background-color: lightblue;
+    float: left;
+    padding: 20px;
+}
+
+.youtube_video {
+    width: 560px;
+    height: 315px;
+    border: none;
+    margin-top: -400px;
+    margin-right: 100px;
+    float: right
+}
+
+/* master_typing.html */
+.steps_heading {
+    font-family: 'Fira Code', serif;
+    font-size: 27px
+}
+
+.steps_lists {
+    font-size: 20px;
+    list-style-type: circle;
+}
+
+.steps_lists li {
+    margin-top: 10px;
+}

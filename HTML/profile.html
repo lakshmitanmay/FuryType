@@ -5,41 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Profile</title>
-    <link rel="stylesheet" href="../style.css">
-    <script type="text/javascript" src="../script.js"></script>
-    <style>
-        table {
-            background-color: lightblue;
-            margin: 0 auto;
-            border: 1px solid black;
-            color: black;
-            font-size: 20px
-        }
-
-        .heading {
-            background-color: lightseagreen
-        }
-
-        form {
-            text-align: center
-        }
-
-        form input {
-            font-size: 25px;
-            width: 100px;
-            margin: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/common-styles.css">
+    <link rel="stylesheet" href="../CSS/specific-styles.css">
+    <script type="text/javascript" src="../JS/common-scripts.js"></script>
 </head>
 
 <body class="body">
     <!-- Header Section -->
-    <header>
-        <h1><a class="logo" href="../index.html">FuryType</a></h1>
-        <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
-            ☾ / ☼
-        </button>
-        <nav class="topnav">
+    <header class="nav_bar">
+        <nav class="nav_bar_left">
+            <h1><a class="logo" href="index.html">FuryType</a></h1>
+            <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+                ☾ / ☼
+            </button>
+        </nav>
+
+        <nav class="nav_bar_right">
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
@@ -51,10 +32,10 @@
 
     <!-- Main Section -->
     <main>
-        <h2>Profile</h2>
+        <h2 class="main_heading">Profile</h2>
 
-        <table>
-            <tr class="heading">
+        <table class="metrics">
+            <tr class="metrics_heading">
                 <th>wpm</th>
                 <th>raw</th>
                 <th>accuracy</th>
@@ -107,7 +88,7 @@
         </table>
     </main>
 
-    <form action="../index.html">
+    <form class="return_but" action="../index.html">
         <input type="submit" value="return">
     </form>
 </body>

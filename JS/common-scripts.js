@@ -5,11 +5,9 @@ function toggle_mode() {
     if (bodyElement.classList.contains("body")) {
         bodyElement.classList.remove("body");
         bodyElement.classList.add("body2");
-        bodyElement.getElementsByTagName("a")[0].style.color = "black";
         // bodyElement.getElementsByClassName(".topnav")[0].style.color = "black";
     } else {
         bodyElement.classList.remove("body2");
         bodyElement.classList.add("body");
-        bodyElement.getElementsByTagName("a")[0].style.color = "white";
     }
 }

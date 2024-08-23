@@ -5,132 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuryType</title>
-    <link rel="stylesheet" href="../style.css">
-    <script type="text/javascript" src="../script.js"></script>
-    <style>
-        legend {
-            font-size: 30px;
-            font-family: 'Fira Code', serif;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .submit1 {
-            font-size: 25px;
-            width: 150px;
-        }
-
-        #register {
-            text-align: left;
-            float: left;
-            margin-top: 100px;
-            margin-left: 250px;
-            margin-right: 1270px
-        }
-
-        #register input,
-        #login input {
-            margin: 10px;
-            width: 300px;
-            font-size: 20px;
-        }
-
-        #login {
-            text-align: left;
-            float: right;
-            margin-top: -265px;
-            margin-left: 100px;
-            margin-right: 300px
-        }
-
-        #submit_but {
-            margin-top: 500px;
-            margin-left: 640px;
-        }
-
-        #return {
-            font-size: 30px;
-            width: 100px
-        }
-
-        p {
-            text-align: center;
-            font-size: 25px;
-            font-style: italic
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/common-styles.css">
+    <link rel="stylesheet" href="../CSS/specific-styles.css">
+    <script type="text/javascript" src="../JS/common-scripts.js" defer></script>
 </head>
 
 <body class="body">
-    <main>
-        <header>
-            <h1><a class="logo" href="../index.html">FuryType</a></h1>
-            <button id="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+    <header class="nav_bar">
+        <nav class="nav_bar_left">
+            <h1><a class="logo" href="index.html">FuryType</a></h1>
+            <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
                 ☾ / ☼
             </button>
+        </nav>
 
-            <nav class="topnav">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-                    <li><a href="tutorial.html">Tutorial</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav class="nav_bar_right">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="reg_log">
+        <form class="register" action="../index.html">
+            <fieldset class="reg_border">
+                <legend class="reg_log_leg">Register</legend>
+                <input id="username_1" name = "username" type="text" placeholder="username" required>
+                <input id="password_1" name = "password" type="password" placeholder="password" required>
+                <input id="email" name = "email" type="email" placeholder="email" required>
+                <div>
+                    <input type="submit" value="register">
+                </div>
+                <p class="or">or</p>
+                <div class="reg_log_but">
+                    <a class="google_img" href="https://google.com">
+                        <img src="../images/google.png" alt="Google Logo" width="55px">
+                    </a>
+                    <a href="https://github.com">
+                        <img src="../images/github.png" alt="GitHub Logo" width="53px">
+                    </a>
+                </div>
+            </fieldset>
+        </form>
 
-        <section>
-            <form id="register" action="../index.html">
-                <fieldset style="border: orange solid">
-                    <legend>Register</legend>
-                    <label for="username_1">
-                        <input type="text" id="username_1" placeholder="username" required>
-                    </label>
-                    <label for="password_1">
-                        <input id="password_1" type="password" placeholder="password" required>
-                    </label>
-                    <label for="email">
-                        <input id="email" type="text" placeholder="email" required>
-                    </label>
-                    <div class="center">
-                        <input class="submit1" type="submit" value="register">
-                    </div>
-                </fieldset>
-            </form>
-
-            <form id="login" action="../index.html">
-                <fieldset style="border: aquamarine solid">
-                    <legend>login</legend>
-                    <label for="username_2">
-                        <input id="username_2" type="text" placeholder="username" required>
-                    </label><br>
-                    <label for="password_2">
-                        <input id="password_2" type="password" placeholder="password" required>
-                    </label>
-                    <div class="center">
-                        <input class="submit1" type="submit" value="login">
-                    </div>
-                    <p>or</p>
-                    <div class="center">
-                        <a href="https://google.com">
-                            <img src="../images/google.png" alt="image showing google logo" width="55px">
-                        </a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://github.com">
-                            <img src="../images/github.png" alt="image showing google logo" width="53px">
-                        </a>
-                    </div>
-                </fieldset>
-            </form>
-        </section>
-
-        <section id="submit_but">
-            <form action="../index.html">
-                <input id="return" type="submit" value="return">
-            </form>
-        </section>
+        <form class="login" action="../index.html">
+            <fieldset class="log_border">
+                <legend class="reg_log_leg">login</legend>
+                <input id="username_2" name = "username" type="text" placeholder="username" required>
+                <br>
+                <input id="password_2" name = "password" type="password" placeholder="password" required>
+                <div>
+                    <input type="submit" value="login">
+                </div>
+                <p class="or">or</p>
+                <div class="reg_log_but">
+                    <a class="google_img" href="https://google.com">
+                        <img src="../images/google.png" alt="Google Logo" width="55px">
+                    </a>
+                    <a href="https://github.com">
+                        <img src="../images/github.png" alt="GitHub Logo" width="53px">
+                    </a>
+                </div>
+            </fieldset>
+        </form>
+        
+        <form class="return_but" action="../index.html">
+            <input type="submit" value="return">
+        </form>
 
     </main>
 </body>
