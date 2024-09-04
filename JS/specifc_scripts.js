@@ -1,14 +1,36 @@
+// tutorial.html
+function add_frame_delay() {
+    setTimeout(() => {
+        const element1 = document.getElementsByClassName('steps_frame')[0];
+        element1.style.display = 'block';
+        setTimeout(() => {
+            element1.style.opacity = '1';
+        }, 10);
+
+        const element2 = document.getElementsByClassName('youtube_video')[0];
+        element2.style.display = 'block';
+        setTimeout(() => {
+            element2.style.opacity = '1';
+        }, 10);
+    }, 1000);
+}
+
 // master_typing.html
-function add_delay() {
+function add_sec_delay() {
     const sections = ['sec1', 'sec2', 'sec3'];
 
     for (let index = 0; index < sections.length; index++) { // using loop control
         setTimeout(() => {
-            document.getElementById(sections[index]).style.display = 'block';
-        }, (index + 1) * 2000); // 2-second delay between each section
+            const element = document.getElementById(sections[index]);
+            element.style.display='block';
+            setTimeout(() => {
+                element.style.opacity = '1';
+            }, 10)
+        }, (index + 1) * 1500);
     }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    add_delay();
+    add_frame_delay();
+    add_sec_delay();
 });

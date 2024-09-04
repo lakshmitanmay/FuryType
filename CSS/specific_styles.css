@@ -98,6 +98,9 @@
 
 /* tutorial.html */
 .steps_frame {
+    display:none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     border: none;
     border-radius: 12px;
     margin: 40px 9600px 20px 50px;
@@ -109,6 +112,9 @@
 }
 
 .youtube_video {
+    display:none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     width: 560px;
     height: 315px;
     border: none;
@@ -120,6 +126,8 @@
 /* master_typing.html */
 #sec1, #sec2, #sec3 {
     display:none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .steps_heading {
