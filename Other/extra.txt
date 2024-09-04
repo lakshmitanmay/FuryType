@@ -1,0 +1,10 @@
+    switch (bodyElement.classList.contains("body")) {
+        case true:
+            bodyElement.classList.remove("body");
+            bodyElement.classList.add("body2");
+            break;
+        case false:
+            bodyElement.classList.remove("body2");
+            bodyElement.classList.add("body");
+            break;
+    }

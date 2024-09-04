@@ -118,6 +118,10 @@
 }
 
 /* master_typing.html */
+#sec1, #sec2, #sec3 {
+    display:none;
+}
+
 .steps_heading {
     font-family: 'Fira Code', serif;
     font-size: 27px
@@ -131,3 +135,5 @@
 .steps_lists li {
     margin-top: 10px;
 }
+
+
