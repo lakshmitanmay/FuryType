@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../CSS/common_styles.css">
     <link rel="stylesheet" href="../CSS/specific_styles.css">
     <script type="text/javascript" src="../JS/common_scripts.js"></script>
-    <script type="text/javascript" src="../JS/specifc_scripts.js"></script>
+    <script type="text/javascript" src="../JS/specific_scripts.js"></script>
 </head>
 
 <body class="body">
@@ -33,11 +33,12 @@
 
     <!-- Main Section -->
     <main class="reg_log">
-        <form class="register" action="../index.html">
+        <form name="register" class="register" action="../index.html" onsubmit="return match_pass()">
             <fieldset class="reg_border">
                 <legend class="reg_log_leg">Register</legend>
                 <input id="username_1" name="username" type="text" placeholder="username" required>
                 <input id="password_1" name="password" type="password" placeholder="password" required>
+                <input id="password_2" name="password2" type="password" placeholder="confirm password" required>
                 <input id="email" name="email" type="email" placeholder="email" required>
                 <div>
                     <input type="submit" value="register">

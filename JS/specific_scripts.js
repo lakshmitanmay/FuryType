@@ -22,7 +22,7 @@ function add_sec_delay() {
     for (let index = 0; index < sections.length; index++) { // using loop control
         setTimeout(() => {
             const element = document.getElementById(sections[index]);
-            element.style.display='block';
+            element.style.display = 'block';
             setTimeout(() => {
                 element.style.opacity = '1';
             }, 10)
@@ -34,3 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
     add_frame_delay();
     add_sec_delay();
 });
+
+
+// register.html
+function match_pass() {
+    var first_password = document.register.password.value;
+    var second_password = document.register.password2.value;
+
+    if (first_password === second_password) {
+        return true;
+    } else {
+        alert("password must be same!");
+        return false;
+    }
+}  
