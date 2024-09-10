@@ -40,7 +40,7 @@
 /* register.html */
 .reg_log {
     margin-top: 100px;
-    padding: 0px 3%;
+    padding: 0 3%;
 }
 
 .reg_log_leg {
@@ -63,7 +63,6 @@
 }
 
 .login {
-    align-items: left;
     float: right;
     margin-top: -370px;
     margin-left: 100px;
