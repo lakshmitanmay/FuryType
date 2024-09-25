@@ -10,3 +10,19 @@ function toggle_mode() {
         bodyElement.classList.add("body");
     }
 }
+
+function mouseoverevent() {
+    const previewImage = document.getElementById("preview_ind");
+    previewImage.style.display = "block";
+    setTimeout(() => {
+        previewImage.style.opacity = '1';
+    }, 125);
+}
+
+function mouseleaveevent() {
+    const previewImage = document.getElementById("preview_ind");
+    previewImage.style.opacity = '0';
+    setTimeout(() => {
+        previewImage.style.display = "none";
+    }, 300);
+}

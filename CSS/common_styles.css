@@ -114,3 +114,24 @@ a:active {
     width: 100px;
     margin: 30px;
 }
+
+#preview_ind {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 1px solid orange;
+    border-radius: 12px;
+    position: absolute;
+    height: 200px;
+    right: 330px;
+    margin-top: 25px;
+}
+
+.greeting{
+    font-family: 'Futura', serif;
+    font-size: 13px;
+    font-style: italic;
+    margin-left: 90px;
+    margin-top: -13px;
+    color: orange;
+}

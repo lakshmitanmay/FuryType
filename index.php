@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+date_default_timezone_set('Asia/Kolkata'); // Replace with your timezone
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +38,18 @@
 
 <!-- Main Section -->
 <main>
+    <h3 class="greeting">
+        <?php
+        $hour = date("H");
+        if ($hour < 12) {
+            echo "Good Morning!";
+        } elseif ($hour < 18) {
+            echo "Good Afternoon!";
+        } else {
+            echo "Good Evening!";
+        }
+        ?>
+    </h3>
     <h2 class="main_heading">Test Your Speed</h2>
     <form class="type_test">
         <input class="input_box" type="text" placeholder="Start Typing Text Here" required>

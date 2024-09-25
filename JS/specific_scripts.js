@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // register.html
 function match_pass() {
-    var first_password = document.register.password.value;
-    var second_password = document.register.password2.value;
+    const first_password = document.register.password.value;
+    const second_password = document.register.password2.value;
 
     if (first_password === second_password) {
         return true;
@@ -47,4 +47,23 @@ function match_pass() {
         alert("password must be same!");
         return false;
     }
-}  
+}
+
+function validatePassword() {
+    const password = document.getElementById("reg_pw1").value;
+    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!strongPassword.test(password)) {
+        alert("Password must contain at least one uppercase letter, one number, and one special character.");
+        return false;
+    }
+    return true;
+}
+
+function validate_username() {
+    const name = document.getElementById("reg_un1").value;
+    if (!(/\d/.test(name))) {
+        alert("Please enter your name properly.");
+        return false;
+    }
+    return true;
+}
