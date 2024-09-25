@@ -32,7 +32,7 @@ date_default_timezone_set('Asia/Kolkata'); // Replace with your timezone
             <li><a href="HTML/tutorial.html">Tutorial</a></li>
             <li><a href="HTML/register.html">Login/Register</a></li>
         </ul>
-        <img id="preview_ind" src="Images/profile.jpeg">
+        <img id="preview_ind" src="images/profile.jpeg">
     </nav>
 </header>
 
