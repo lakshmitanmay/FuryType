@@ -7,7 +7,7 @@
     <title>Your Profile</title>
     <link rel="stylesheet" href="../CSS/common_styles.css">
     <link rel="stylesheet" href="../CSS/specific_styles.css">
-    <script type="text/javascript" src="JS/common_scripts.js"></script>
+    <script type="text/javascript" src="../JS/common_scripts.js"></script>
     <script type="text/javascript" src="../JS/specific_scripts.js"></script>
 </head>
 
@@ -23,11 +23,17 @@
 
     <nav class="nav_bar_right">
         <ul>
-            <li><a href="../index.html">Home</a></li>
             <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-            <li><a href="tutorial.html">Tutorial</a></li>
-            <li><a href="register.html">Login/Register</a></li>
+            <li><a href="../index.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="home_img">Home</a></li>
+            <li><a href="tutorial.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="tutorial_img">Tutorial</a></li>
+            <li><a href="register.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="login_img">Login/Register</a></li>
         </ul>
+        <img id="home_img" src="../images/home.jpeg" alt="preview of home page">
+        <img id="tutorial_img" src="../images/tutorial.jpeg" alt="preview of tutorial page">
+        <img id="login_img" src="../images/login.jpeg" alt="preview of login page">
     </nav>
 </header>
 

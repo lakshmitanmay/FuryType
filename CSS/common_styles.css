@@ -115,7 +115,7 @@ a:active {
     margin: 30px;
 }
 
-#preview_ind {
+#profile_img, #tutorial_img, #login_img, #home_img {
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -123,8 +123,23 @@ a:active {
     border-radius: 12px;
     position: absolute;
     height: 200px;
-    right: 330px;
     margin-top: 25px;
+}
+
+#home_img {
+    right: 205px;
+}
+
+#profile_img {
+    right: 205px;
+}
+
+#tutorial_img {
+    right: 115px;
+}
+
+#login_img {
+    right: 15px;
 }
 
 .greeting{

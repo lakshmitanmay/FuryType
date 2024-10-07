@@ -1,0 +1,105 @@
+<?php
+error_reporting(0);
+if( $_GET["username"] || $_GET["password"] || $_GET["email"])
+{
+    echo "Welcome ". $_GET['username']. "<br>";
+    echo "password:  ". $_GET['password']. "<br>";
+    echo "email:  ". $_GET['email']. "<br>";
+    exit();
+}
+
+if( $_POST["username"] || $_POST["password"] || $_POST["email"])
+{
+    echo "Welcome ". $_POST['username']. "<br>";
+    echo "password:  ". $_POST['password']. "<br>";
+    exit();
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuryType</title>
+    <link rel="stylesheet" href="../CSS/common_styles.css">
+    <link rel="stylesheet" href="../CSS/specific_styles.css">
+    <script type="text/javascript" src="../JS/common_scripts.js"></script>
+    <script type="text/javascript" src="../JS/specific_scripts.js"></script>
+</head>
+
+<body class="body">
+<!-- Header Section -->
+<header class="nav_bar">
+    <nav class="nav_bar_left">
+        <h1><a class="logo" href="../index.html">FuryType</a></h1>
+        <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+            ☾ / ☼
+        </button>
+    </nav>
+
+    <nav class="nav_bar_right">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main Section -->
+<main class="reg_log">
+    <form name="register" class="register" action="<?php $_PHP_SELF ?>" method="get" onsubmit="return match_pass() && validatePassword() && validate_username()">
+        <fieldset class="reg_border">
+            <legend class="reg_log_leg">Register</legend>
+            <input id="reg_un1" name="username" type="text" placeholder="username" required>
+            <input id="reg_pw1" name="password" type="password" placeholder="password" required>
+            <input id="reg_pw2" name="password2" type="password" placeholder="confirm password" required>
+            <input id="email" name="email" type="email" placeholder="email" required>
+            <div>
+                <input type="submit" value="register">
+            </div>
+            <p class="or">or</p>
+            <div class="reg_log_but">
+                <a class="google_img" href="https://google.com">
+                    <img src="../images/google.png" alt="Google Logo" width="55px">
+                </a>
+                <a href="https://github.com">
+                    <img src="../images/github.png" alt="GitHub Logo" width="53px">
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+    <form class="login" action="<?php $_PHP_SELF ?>" method = "POST">
+        <fieldset class="log_border">
+            <legend class="reg_log_leg">login</legend>
+            <input id="log_un1" name="username" type="text" placeholder="username" required>
+            <br>
+            <input id="log_pw1" name="password" type="password" placeholder="password" required>
+            <div>
+                <input type="submit" value="login">
+            </div>
+            <p class="or">or</p>
+            <div class="reg_log_but">
+                <a class="google_img" href="https://google.com">
+                    <img src="../images/google.png" alt="Google Logo" width="55px">
+                </a>
+                <a href="https://github.com">
+                    <img src="../images/github.png" alt="GitHub Logo" width="53px">
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+    <form class="return_but" action="../index.html">
+        <input type="submit" value="return">
+    </form>
+
+</main>
+</body>
+
+</html>

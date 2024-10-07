@@ -25,12 +25,18 @@
 
     <nav class="nav_bar_right">
         <ul>
-            <li><a href="HTML/profile.html" onmouseover="mouseoverevent()" onmouseleave="mouseleaveevent()">Profile</a></li>
             <li><a href="https://lakshmitanmay.github.io">About Me</a></li>
-            <li><a href="HTML/tutorial.html">Tutorial</a></li>
-            <li><a href="HTML/register.html">Login/Register</a></li>
+            <li><a href="HTML/profile.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="profile_img">Profile</a>
+            </li>
+            <li><a href="HTML/tutorial.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="tutorial_img">Tutorial</a></li>
+            <li><a href="HTML/register.html" onmouseover="mouseoverevent(this)" onmouseleave="mouseleaveevent(this)"
+                   data-preview="login_img">Login/Register</a></li>
         </ul>
-        <img id="preview_ind" src="images/profile.jpeg">
+        <img id="profile_img" src="images/profile.jpeg" alt="preview of profile page">
+        <img id="tutorial_img" src="images/tutorial.jpeg" alt="preview of tutorial page">
+        <img id="login_img" src="images/login.jpeg" alt="preview of login page">
     </nav>
 </header>
 
@@ -38,7 +44,9 @@
 <main>
     <h2 class="main_heading">Test Your Speed</h2>
     <form class="type_test">
-        <input class="input_box" type="text" placeholder="Start Typing Text Here" required>
+        <label>
+            <input class="input_box" type="text" placeholder="Start Typing Text Here" required>
+        </label>
     </form>
 </main>
 </body>

@@ -11,16 +11,18 @@ function toggle_mode() {
     }
 }
 
-function mouseoverevent() {
-    const previewImage = document.getElementById("preview_ind");
+function mouseoverevent(element) {
+    const previewId = element.getAttribute("data-preview");
+    const previewImage = document.getElementById(previewId);
     previewImage.style.display = "block";
     setTimeout(() => {
         previewImage.style.opacity = '1';
-    }, 125);
+    }, 500);
 }
 
-function mouseleaveevent() {
-    const previewImage = document.getElementById("preview_ind");
+function mouseleaveevent(element) {
+    const previewId = element.getAttribute("data-preview");
+    const previewImage = document.getElementById(previewId);
     previewImage.style.opacity = '0';
     setTimeout(() => {
         previewImage.style.display = "none";
