@@ -1,3 +1,7 @@
+<?php
+date_default_timezone_set('Asia/Kolkata');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +38,20 @@
 
 <!-- Main Section -->
 <main>
+    <h3 class="greeting">
+        <?php
+        $hour = date("H");
+        if ($hour < 12) {
+            echo "Good Morning!";
+        } elseif ($hour < 18) {
+            echo "Good Afternoon!";
+        } else {
+            echo "Good Evening!";
+        }
+        ?>
+    </h3>
     <h2 class="main_heading">Tutorial</h2>
-    <iframe class="steps_frame" src="master_typing.html" title="master_typing"></iframe>
+    <iframe class="steps_frame" src="master_typing.php" title="master_typing"></iframe>
     <iframe class="youtube_video" src="https://www.youtube.com/embed/QAb3ATOpBpE?si=EKZ6IpJN8akG44gd"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -43,7 +59,7 @@
 </main>
 
 <div class="button_container">
-    <a href="../index.html" class="button">Return</a>
+    <a href="../index.php" class="button">Return</a>
 </div>
 </body>
 

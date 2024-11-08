@@ -1,30 +1,24 @@
 function toggle_mode() {
     const bodyElement = document.getElementsByTagName("body")[0];
+    const paragraphElement = document.querySelector(".paragraph");
+    const typingMetricsElement = document.querySelector(".typing_metrics");
 
-    // Check the current color to determine which styles to apply using decision control statements
-    if (bodyElement.classList.contains("body")) {
-        bodyElement.classList.remove("body");
-        bodyElement.classList.add("body2");
-    } else {
+    if (bodyElement.classList.contains("body2")) {
         bodyElement.classList.remove("body2");
         bodyElement.classList.add("body");
+
+        paragraphElement.classList.add("dark-mode-paragraph");
+        paragraphElement.classList.remove("light-mode-paragraph");
+        typingMetricsElement.classList.add("dark-mode-metrics");
+        typingMetricsElement.classList.remove("light-mode-metrics");
+
+    } else {
+        bodyElement.classList.remove("body");
+        bodyElement.classList.add("body2");
+
+        paragraphElement.classList.add("light-mode-paragraph");
+        paragraphElement.classList.remove("dark-mode-paragraph");
+        typingMetricsElement.classList.add("light-mode-metrics");
+        typingMetricsElement.classList.remove("dark-mode-metrics");
     }
-}
-
-function mouseoverevent(element) {
-    const previewId = element.getAttribute("data-preview");
-    const previewImage = document.getElementById(previewId);
-    previewImage.style.display = "block";
-    setTimeout(() => {
-        previewImage.style.opacity = '1';
-    }, 500);
-}
-
-function mouseleaveevent(element) {
-    const previewId = element.getAttribute("data-preview");
-    const previewImage = document.getElementById(previewId);
-    previewImage.style.opacity = '0';
-    setTimeout(() => {
-        previewImage.style.display = "none";
-    }, 300);
 }
