@@ -32,19 +32,59 @@
     </nav>
 </header>
 
-<!-- Main Section -->
-<main>
-    <h2 class="main_heading">Tutorial</h2>
-    <iframe class="steps_frame" src="master_typing.html" title="master_typing"></iframe>
-    <iframe class="youtube_video" src="https://www.youtube.com/embed/QAb3ATOpBpE?si=EKZ6IpJN8akG44gd"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</main>
+<h2 class="main_heading">Tutorial</h2>
 
+<!-- Main Section -->
+<main class="tutorial_main">
+    <div class="tutorial_left">
+        <iframe class="youtube_video" src="https://www.youtube.com/embed/QAb3ATOpBpE?si=EKZ6IpJN8akG44gd"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="steps_frame" src="master_typing.html" title="master_typing"></iframe>
+    </div>
+    <figure class="touch_typing_fig">
+        <img class="touch_typing_img" src="../images/Touch_typing.png" alt="Touch Typing Diagram" usemap="#img-map">
+        <map name="img-map">
+            <area target="" alt="Left Index"
+                  coords="182,3,183,34,202,48,206,62,208,78,219,92,218,111,220,125,234,128,242,143,241,153,241,169,262,172,291,172,311,171,318,169,318,140,294,91,281,49,259,4,239,0,225,2,203,0,180,-1,197,3"
+                  shape="poly" onmouseover="showPopup(event, 'Use the left index finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Right Index"
+                  coords="273,3,274,35,290,46,296,54,296,62,296,71,293,78,307,86,306,94,309,111,306,116,309,124,319,125,324,136,330,142,332,153,330,170,341,168,351,168,366,170,382,170,395,168,399,170,409,171,409,139,388,128,385,108,385,96,377,83,372,71,371,53,369,49,351,34,348,25,349,12,349,1"
+                  shape="poly" onmouseover="showPopup(event, 'Use the right index finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Left Middle"
+                  coords="139,4,139,22,140,37,153,42,159,49,162,60,162,72,159,80,170,89,172,100,174,112,172,127,191,131,194,143,196,158,196,170,216,171,230,171,228,158,229,139,196,99,199,120,216,129,205,96,194,75,194,64,195,55,194,47,175,34,172,26,173,16,175,2,155,4"
+                  shape="poly" onmouseover="showPopup(event, 'Use the left middle finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Left Ring" title="Left Ring"
+                  coords="96,3,96,25,95,36,114,51,117,65,117,77,127,88,128,101,130,123,143,130,152,140,152,159,154,171,184,170,185,159,184,138,165,126,163,111,163,103,164,96,155,87,149,71,150,57,150,47,131,42,129,35,129,25,129,16,127,5"
+                  shape="poly" onmouseover="showPopup(event, 'Use the left ring finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Left Little"
+                  coords="6,3,8,37,29,39,39,36,59,42,69,46,74,59,74,70,74,77,78,82,84,93,86,104,84,117,84,126,100,132,105,141,107,158,106,169,120,170,131,170,139,170,141,140,118,119,119,105,119,93,107,84,106,69,105,59,105,46,90,41,84,30,84,14,82,1"
+                  shape="poly" onmouseover="showPopup(event, 'Use the left little finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Right Middle"
+                  coords="362,2,361,36,374,42,380,46,381,59,384,73,386,82,394,88,394,98,395,108,395,114,398,125,405,124,416,131,416,136,417,145,418,155,419,169,431,174,451,169,452,156,452,138,442,134,435,129,431,117,431,103,431,93,419,86,416,79,416,68,416,50,402,44,393,35,394,27,395,4"
+                  shape="poly" onmouseover="showPopup(event, 'Use the right middle finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Right Ring"
+                  coords="406,3,407,35,415,39,422,44,428,55,428,69,426,80,441,84,441,99,442,113,442,123,455,129,464,139,462,152,463,170,471,170,491,170,497,170,498,150,497,139,484,134,474,134,475,127,475,113,475,100,475,92,463,87,460,79,460,60,459,51,448,46,438,43,438,32,439,20,438,5"
+                  shape="poly" onmouseover="showPopup(event, 'Use the right ring finger for this key')"
+                  onmouseout="hidePopup()">
+            <area target="" alt="Right Little"
+                  coords="450,3,451,37,472,52,473,67,474,81,484,85,485,94,487,119,489,125,504,129,510,150,508,168,517,171,533,171,540,171,541,161,541,150,543,140,552,130,565,126,562,119,565,110,564,95,567,90,584,84,595,86,594,74,594,60,593,49,600,38,612,38,637,39,654,39,663,38,661,17,660,5,535,1"
+                  shape="poly" onmouseover="showPopup(event, 'Use the right little finger for this key')"
+                  onmouseout="hidePopup()">
+        </map>
+        <figcaption class="popup" id="popup"></figcaption>
+    </figure>
+
+</main>
 <div class="button_container">
     <a href="../index.html" class="button">Return</a>
 </div>
 </body>
-
 </html>

@@ -62,7 +62,7 @@
     margin: 20px auto;
     color: orange;
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.5rem;
 
     background: rgba(240, 220, 239, 0.2);
@@ -326,43 +326,62 @@
 }
 
 
-
 /* tutorial.html */
+.tutorial_main {
+    display: flex; /* Enable flexbox for layout */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Space between elements */
+}
+
 .steps_frame {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    display: block;
     border: none;
     border-radius: 12px;
-    margin: 40px 9600px 20px 50px;
     height: 400px;
-    width: 500px;
+    width: 520px;
     background-color: lightblue;
-    float: left;
     padding: 20px;
 }
 
 .youtube_video {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
     width: 560px;
     height: 315px;
     border: none;
-    margin-top: -400px;
-    margin-right: 100px;
-    float: right
+    border-radius: 12px;
+}
+
+.tutorial_left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 50px;
+    flex: 1;
+}
+
+.touch_typing_fig {
+    width: 90%;
+    height: 90%;
+    margin-top: 200px;
+    margin-right: 60px;
+}
+
+.popup {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    display: none;
+    font-size: 14px;
+    z-index: 10;
+}
+
+.touch_typing_img {
+    height: 220px ;
+    width: 666px;
 }
 
 /* master_typing.html */
-#sec1,
-#sec2,
-#sec3 {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
 .steps_heading {
     font-family: 'Fira Code', serif;
     font-size: 27px

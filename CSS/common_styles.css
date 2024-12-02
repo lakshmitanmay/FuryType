@@ -150,3 +150,7 @@ a:active {
     margin-top: -13px;
     color: orange;
 }
+
+abbr {
+    text-decoration: none;
+}

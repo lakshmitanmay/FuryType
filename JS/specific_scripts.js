@@ -2,11 +2,17 @@ let startTime, timerInterval;
 const maxTime = 15;
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (document.querySelector('.steps_frame') || document.querySelector('.youtube_video')) {
-        add_frame_delay();
+    const popup = document.getElementById('popup');
+
+    function showPopup(event, content) {
+        popup.textContent = content;
+        popup.style.display = 'block';
+        popup.style.left = event.pageX + 15 + 'px';
+        popup.style.top = event.pageY + 15 + 'px';
     }
-    if (document.getElementById('sec1') || document.getElementById('sec2') || document.getElementById('sec3')) {
-        add_sec_delay();
+
+    function hidePopup() {
+        popup.style.display = 'none';
     }
 
     const typingInput = document.getElementById("typingInput");
@@ -18,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (metricsDisplay) {
         metricsDisplay.classList.add("hidden");
     }
+
+    window.showPopup = showPopup;
+    window.hidePopup = hidePopup;
 });
 
 // index.php
@@ -98,38 +107,3 @@ function endTest(isTimeout) {
 
 }
 
-// tutorial.html
-function add_frame_delay() {
-    const element1 = document.querySelector('.steps_frame');
-    const element2 = document.querySelector('.youtube_video');
-
-    if (element1 && element2) {
-        setTimeout(() => {
-            element1.style.display = 'block';
-            setTimeout(() => {
-                element1.style.opacity = '1';
-            }, 10);
-
-            element2.style.display = 'block';
-            setTimeout(() => {
-                element2.style.opacity = '1';
-            }, 10);
-        }, 1000);
-    }
-}
-
-function add_sec_delay() {
-    const sections = ['sec1', 'sec2', 'sec3'];
-
-    sections.forEach((sectionId, index) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            setTimeout(() => {
-                element.style.display = 'block';
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                }, 10);
-            }, (index + 1) * 1500);
-        }
-    });
-}

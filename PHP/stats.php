@@ -32,9 +32,6 @@ date_default_timezone_set('Asia/Kolkata');
             <li><a href="register_login.php">Login/Register</a></li>
             <li><a href="https://oltt.carrd.co">About Me</a></li>
         </ul>
-        <img id="home_img" src="../images/home.jpeg" alt="preview of home page">
-        <img id="tutorial_img" src="../images/tutorial.jpeg" alt="preview of tutorial page">
-        <img id="login_img" src="../images/login.jpeg" alt="preview of login page">
     </nav>
 </header>
 
