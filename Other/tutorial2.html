@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial</title>
+    <link rel="stylesheet" href="../CSS/common_styles.css">
+    <link rel="stylesheet" href="../CSS/specific_styles.css">
+    <script type="text/javascript" src="../JS/common_scripts.js"></script>
+    <script type="text/javascript" src="../JS/specific_scripts.js"></script>
+</head>
+
+<body class="body">
+
+<header class="nav_bar">
+    <nav class="nav_bar_left">
+        <h1><a class="logo" href="../index.php">FuryType</a></h1>
+        <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
+            ☾ / ☼
+        </button>
+    </nav>
+    <nav class="nav_bar_right">
+        <ul>
+            <li><a href="../index.php" aria-label="Go to Home">Home</a></li>
+            <li><a href="../PHP/stats.php" aria-label="View Stats">Stats</a></li>
+            <li><a href="../PHP/register_login.php" aria-label="Login or Register">Login/Register</a></li>
+            <li><a href="https://oltt.carrd.co" aria-label="About Me">About Me</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="tutorial_main">
+    <h2 class="main_heading">Tutorial</h2>
+    <section class="tutorial_content">
+        <div class="tutorial_left">
+            <iframe class="youtube_video" src="https://www.youtube.com/embed/QAb3ATOpBpE?si=EKZ6IpJN8akG44gd"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe class="steps_frame" src="master_typing.html" title="Master Typing Instructions"></iframe>
+        </div>
+        <figure class="touch_typing_fig">
+            <img class="touch_typing_img" src="../images/Touch_typing.png" alt="Touch Typing Diagram" usemap="#img-map">
+            <map name="img-map">
+                <area alt="Left Index" coords="182,3,183,34,202,48,206,62,208,78,219,92,218,111,220,125,234,128,242,143,241,153,241,169,262,172,291,172,311,171,318,169,318,140,294,91,281,49,259,4,239,0,225,2,203,0,180,-1,197,3"
+                      shape="poly" onmouseover="showPopup(event, 'Use the left index finger for this key')"
+                      onmouseout="hidePopup()">
+                <area alt="Right Index" coords="273,3,274,35,290,46,296,54,296,62,296,71,293,78,307,86,306,94,309,111,306,116,309,124,319,125,324,136,330,142,332,153,330,170,341,168,351,168,366,170,382,170,395,168,399,170,409,171,409,139,388,128,385,108,385,96,377,83,372,71,371,53,369,49,351,34,348,25,349,12,349,1"
+                      shape="poly" onmouseover="showPopup(event, 'Use the right index finger for this key')"
+                      onmouseout="hidePopup()">
+                <!-- Add remaining areas -->
+            </map>
+            <figcaption class="popup" id="popup"></figcaption>
+        </figure>
+    </section>
+</main>
+
+<div class="button_container">
+    <a href="../index.html" class="button">Return</a>
+</div>
+
+<script>
+    // JavaScript for interactive functionality
+    function showPopup(event, text) {
+        const popup = document.getElementById('popup');
+        popup.style.left = `${event.pageX + 10}px`;
+        popup.style.top = `${event.pageY + 10}px`;
+        popup.textContent = text;
+        popup.style.display = 'block';
+    }
+
+    function hidePopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'none';
+    }
+</script>
+</body>
+
+</html>
