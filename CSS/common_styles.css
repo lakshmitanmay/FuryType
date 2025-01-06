@@ -1,11 +1,8 @@
 .body {
-    color: white;
-    background-image: url('../images/dark_theme.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    color: #D8DEE9;
     height: 100vh;
     width: 100%;
-    background-color: #06121C
+    background-color: #242933;
 }
 
 .body2 {
@@ -22,7 +19,7 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    padding: 0px 3%;
+    padding: 0 3%;
     position: relative;
 }
 
@@ -37,18 +34,17 @@
     font-style: italic;
 }
 
-.theme_switch {
-    margin-left: 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 12px;
-    padding: 5px 12px;
-    transition: all 0.3s ease 0s;
-
+.logo-icon {
+    user-select: none;
+    font-size: 50px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    transition: transform 0.3s ease-in;
 }
 
-.theme_switch:hover {
-    background-color: orange;
+.logo-icon.rotate {
+    transform: rotate(405deg);
 }
 
 .nav_bar_right ul {
@@ -57,25 +53,18 @@
 
 .nav_bar_right ul li {
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 .nav_bar_right ul li a {
-    color: white;
     border-bottom: 2px ridge transparent;
 }
 
-
 .nav_bar_right ul li a:hover {
-    border-bottom: 2px ridge orange;
+    border-bottom: 2px ridge #88C0D0;
     padding: 12px 17px;
     border-radius: 100px;
-    color: orange;
-}
-
-.nav_bar_right ul li a:active {
-    border-bottom: 2px ridge skyblue;
-    color: skyblue;
+    color: #88C0D0;
 }
 
 .main_heading {
@@ -85,7 +74,7 @@
 }
 
 a {
-    color: white;
+    color: #D8DEE9;
     transition: all 0.3s ease;
     font-family: 'Futura', serif;
     font-weight: 500;
@@ -94,15 +83,11 @@ a {
 }
 
 a:visited {
-    color: white;
+    color: #D8DEE9;
 }
 
 a:hover {
-    color: orange;
-}
-
-a:active {
-    color: skyblue;
+    color: #88C0D0;
 }
 
 .return_but {
@@ -114,41 +99,13 @@ a:active {
     width: 100px;
     margin: 30px;
 }
-
-#profile_img, #tutorial_img, #login_img, #home_img {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border: 1px solid orange;
-    border-radius: 12px;
-    position: absolute;
-    height: 200px;
-    margin-top: 25px;
-}
-
-#home_img {
-    right: 205px;
-}
-
-#profile_img {
-    right: 205px;
-}
-
-#tutorial_img {
-    right: 115px;
-}
-
-#login_img {
-    right: 15px;
-}
-
 .greeting{
     font-family: 'Futura', serif;
     font-size: 13px;
     font-style: italic;
-    margin-left: 90px;
+    margin-left: 45px;
     margin-top: -13px;
-    color: orange;
+    color: #88C0D0;
 }
 
 abbr {

@@ -15,14 +15,14 @@
 
 <header class="nav_bar">
     <nav class="nav_bar_left">
-        <h1><a class="logo" href="../index.php">FuryType</a></h1>
+        <h1><a class="logo" href="../PHP/index.php">FuryType</a></h1>
         <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
             ☾ / ☼
         </button>
     </nav>
     <nav class="nav_bar_right">
         <ul>
-            <li><a href="../index.php" aria-label="Go to Home">Home</a></li>
+            <li><a href="../PHP/index.php" aria-label="Go to Home">Home</a></li>
             <li><a href="../PHP/stats.php" aria-label="View Stats">Stats</a></li>
             <li><a href="../PHP/register_login.php" aria-label="Login or Register">Login/Register</a></li>
             <li><a href="https://oltt.carrd.co" aria-label="About Me">About Me</a></li>
@@ -60,21 +60,7 @@
     <a href="../index.html" class="button">Return</a>
 </div>
 
-<script>
-    // JavaScript for interactive functionality
-    function showPopup(event, text) {
-        const popup = document.getElementById('popup');
-        popup.style.left = `${event.pageX + 10}px`;
-        popup.style.top = `${event.pageY + 10}px`;
-        popup.textContent = text;
-        popup.style.display = 'block';
-    }
 
-    function hidePopup() {
-        const popup = document.getElementById('popup');
-        popup.style.display = 'none';
-    }
-</script>
 </body>
 
 </html>

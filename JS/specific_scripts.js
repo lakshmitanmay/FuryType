@@ -1,109 +1,167 @@
-let startTime, timerInterval;
-const maxTime = 15;
+// index.html
+const canvas = document.getElementById('keyboardCanvas');
+const ctx = canvas.getContext('2d');
 
-document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById('popup');
+const scaleFactor = window.devicePixelRatio || 2;
+canvas.width = 750 * scaleFactor;
+canvas.height = 250 * scaleFactor;
+canvas.style.width = "750px";
+canvas.style.height = "250px";
+ctx.scale(scaleFactor, scaleFactor);
 
-    function showPopup(event, content) {
-        popup.textContent = content;
-        popup.style.display = 'block';
-        popup.style.left = event.pageX + 15 + 'px';
-        popup.style.top = event.pageY + 15 + 'px';
-    }
+const keys = [
+    [
+        {label: 'q', size: 1}, {label: 'w', size: 1}, {label: 'e', size: 1}, {label: 'r', size: 1},
+        {label: 't', size: 1}, {label: 'y', size: 1}, {label: 'u', size: 1}, {label: 'i', size: 1},
+        {label: 'o', size: 1}, {label: 'p', size: 1}, {label: '[', size: 1}, {label: ']', size: 1}
+    ],
+    [
+        {label: 'a', size: 1}, {label: 's', size: 1}, {label: 'd', size: 1}, {label: 'f', size: 1},
+        {label: 'g', size: 1}, {label: 'h', size: 1}, {label: 'j', size: 1}, {label: 'k', size: 1},
+        {label: 'l', size: 1}, {label: ';', size: 1}, {label: '\'', size: 1}
+    ],
+    [
+        {label: 'z', size: 1}, {label: 'x', size: 1}, {label: 'c', size: 1}, {label: 'v', size: 1},
+        {label: 'b', size: 1}, {label: 'n', size: 1}, {label: 'm', size: 1}, {label: ',', size: 1},
+        {label: '.', size: 1}, {label: '/', size: 1}
+    ],
+    [
+        {label: 'space', size: 6.25}
+    ]
+];
 
-    function hidePopup() {
-        popup.style.display = 'none';
-    }
+const keyWidth = 50;
+const keyHeight = 50;
+const keySpacing = 8;
+const startX = 20;
+const startY = 20;
+const radius = 20;
 
-    const typingInput = document.getElementById("typingInput");
-    if (typingInput) {
-        typingInput.addEventListener("input", calculateMetrics);
-    }
+let pressedKeys = new Set(); // Track multiple pressed keys
 
-    const metricsDisplay = document.getElementById("metricsDisplay");
-    if (metricsDisplay) {
-        metricsDisplay.classList.add("hidden");
-    }
+let keyPressDuration = 150; // Time in milliseconds for key press effect
+let keyReleaseDuration = 200; // Time in milliseconds for key release effect
 
-    window.showPopup = showPopup;
-    window.hidePopup = hidePopup;
-});
+function drawKeyboard() {
+    ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
 
-// index.php
-function calculateMetrics() {
-    const paragraphText = document.getElementById("testParagraph").innerText;
-    const typedText = document.getElementById("typingInput").value;
+    let y = startY;
+    keys.forEach((row, rowIndex) => {
+        let totalRowWidth = 0;
+        row.forEach(({label, size}) => {
+            totalRowWidth += keyWidth * size + keySpacing;
+        });
+        totalRowWidth -= keySpacing;
 
-    if (!startTime) {
-        startTime = new Date().getTime();
-        timerInterval = setInterval(updateTime, 1000);
+        let x = (canvas.width / scaleFactor - totalRowWidth) / 2;
 
-        const metricsDisplay = document.getElementById("metricsDisplay");
-        metricsDisplay.classList.remove("hidden");
-        metricsDisplay.classList.add("visible");
-    }
+        row.forEach(({label, size}) => {
+            const width = keyWidth * size;
+            const height = keyHeight;
 
-    const wordsTyped = typedText.trim().split(" ").filter(word => word !== "").length;
-    const timeElapsedInMinutes = (new Date().getTime() - startTime) / 60000;
-    const wpm = Math.round(wordsTyped / timeElapsedInMinutes);
+            const keyColor = 'rgb(46,52,64)';
+            const pressedKeyColor = 'rgb(136,192,208)';
+            const keyTextColor = 'rgb(145,154,171)';
+            const strokeColor = 'rgba(0, 0, 0, 0)';
 
-    let correctCharacters = 0;
-    const lengthToCheck = Math.min(typedText.length, paragraphText.length);
-    for (let i = 0; i < lengthToCheck; i++) {
-        if (typedText[i] === paragraphText[i]) {
-            correctCharacters++;
-        }
-    }
-    const mistakes = typedText.length - correctCharacters;
-    const accuracy = Math.round(((lengthToCheck - mistakes) / lengthToCheck) * 100);
+            // Smooth color transition: pressed key and released key color change gradually
+            let keyFillColor = keyColor;
+            if (pressedKeys.has(label)) {
+                keyFillColor = pressedKeyColor;
+            }
 
-    document.getElementById("wpm").innerText = `Speed: ${wpm} WPM`;
-    document.getElementById("accuracy").innerText = `Accuracy: ${accuracy}%`;
+            ctx.fillStyle = keyFillColor;
 
-    if (typedText === paragraphText) {
-        endTest(false);
-    }
-}
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + keyHeight - radius);
+            ctx.quadraticCurveTo(x + width, y + keyHeight, x + width - radius, y + keyHeight);
+            ctx.lineTo(x + radius, y + keyHeight);
+            ctx.quadraticCurveTo(x, y + keyHeight, x, y + keyHeight - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+            ctx.fill();
 
-function updateTime() {
-    const timeElapsedInSeconds = Math.floor((new Date().getTime() - startTime) / 1000);
-    document.getElementById("timeElapsed").innerText = `Time: ${timeElapsedInSeconds}s`;
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
 
-    if (timeElapsedInSeconds >= maxTime) {
-        endTest(true);
-    }
-}
+            ctx.fillStyle = keyTextColor;
+            ctx.font = '16px Helvetica';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label, x + width / 2, y + keyHeight / 2);
 
-function endTest(isTimeout) {
-    clearInterval(timerInterval);
-    document.getElementById("typingInput").disabled = true;
+            if (label === 'f' || label === 'j') {
+                ctx.fillStyle = keyTextColor;
+                ctx.font = '20px Arial';
+                ctx.fillText('_', x + width / 2, y + keyHeight / 1.4);
+            }
 
-    const timeElapsedInSeconds = Math.floor((new Date().getTime() - startTime) / 1000);
-    const wpm = document.getElementById("wpm").innerText.split(" ")[1];
-    const accuracy = document.getElementById("accuracy").innerText.split(" ")[1];
-
-    const data = {
-        time_elapsed: timeElapsedInSeconds,
-        wpm: parseInt(wpm),
-        accuracy: parseInt(accuracy)
-    };
-
-    fetch('index.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            alert("Metrics saved successfully!");
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            x += width + keySpacing;
         });
 
+        y += keyHeight + keySpacing;
+    });
 }
 
+function handleKeyDown(event) {
+    let key = event.key.toLowerCase();
+
+    if (key === " ") {
+        key = "space";
+    }
+
+    if (event.ctrlKey || event.altKey || event.metaKey || ['shift', 'control', 'alt', 'meta'].includes(key)) {
+        return;
+    }
+
+    const foundKey = keys.flat().find(({ label }) => label === key);
+
+    if (foundKey && !pressedKeys.has(key)) {
+        pressedKeys.add(key);
+        drawKeyboard();
+    }
+}
+
+function handleKeyUp(event) {
+    let key = event.key.toLowerCase();
+
+    if (key === " ") {
+        key = "space";
+    }
+
+    if (event.ctrlKey || event.altKey || event.metaKey || ['shift', 'control', 'alt', 'meta'].includes(key)) {
+        return;
+    }
+
+    const foundKey = keys.flat().find(({ label }) => label === key);
+
+    if (foundKey) {
+        pressedKeys.delete(key);
+        drawKeyboard();
+    }
+}
+
+window.addEventListener('keydown', handleKeyDown);
+window.addEventListener('keyup', handleKeyUp);
+
+drawKeyboard();
+
+
+// tutorial.html
+function showPopup(event, text) {
+    const popup = document.getElementById('popup');
+    popup.style.left = `${event.pageX + 10}px`;
+    popup.style.top = `${event.pageY + 10}px`;
+    popup.textContent = text;
+    popup.style.display = 'block';
+}
+
+function hidePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}

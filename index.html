@@ -5,11 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuryType</title>
+
+    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" sizes="192x192" href="images/favicon/android-chrome-192x192.png">
+    <link rel="icon" sizes="512x512" href="images/favicon/android-chrome-512x512.png">
+    <link rel="icon" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="icon" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+
     <link rel="stylesheet" href="CSS/common_styles.css">
     <link rel="stylesheet" href="CSS/specific_styles.css">
     <script type="text/javascript" src="JS/common_scripts.js"></script>
-    <script type="text/javascript" src="JS/specific_scripts.js"></script>
-
+    <script type="text/javascript" src="JS/specific_scripts.js" defer></script>
 </head>
 
 <body class="body">
@@ -17,10 +25,8 @@
 <!-- Header Section -->
 <header class="nav_bar">
     <nav class="nav_bar_left">
-        <h1><a class="logo" href="index.html">FuryType</a></h1>
-        <button class="theme_switch" type="button" onclick="toggle_mode();" aria-label="Toggle dark/light theme">
-            ☾ / ☼
-        </button>
+        <h1><a class="logo" href="index.html"><em>FuryType</em></a></h1>
+        <span class="logo-icon" id="themeToggle" onclick="toggle_mode()">⌘</span>
     </nav>
 
     <nav class="nav_bar_right">
@@ -28,20 +34,29 @@
             <li><a href="https://oltt.carrd.co">About Me</a></li>
             <li><a href="HTML/profile.html">Profile</a></li>
             <li><a href="HTML/tutorial.html">Tutorial</a></li>
-            <li><a href="HTML/register.html">Login/Register</a></li>
+            <li><a href="HTML/reg_log.html">Login/Register</a></li>
         </ul>
     </nav>
 </header>
+
+<section class="location-weather">
+    <h3 class="greeting" id="location-name"></h3>
+</section>
 
 <!-- Main Section -->
 <main>
     <h2 class="main_heading">Test Your Speed</h2>
     <form class="type_test">
         <label>
-            <input class="input_box" type="text" placeholder="Start Typing Text Here" required>
+            <input id="typingInput" class="input_box" type="text" placeholder="Start Typing Text Here" required>
         </label>
     </form>
+
+    <div class="canvas-wrapper">
+        <canvas id="keyboardCanvas"></canvas>
+    </div>
 </main>
+
 </body>
 
 </html>

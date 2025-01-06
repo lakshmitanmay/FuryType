@@ -1,4 +1,21 @@
 /* index.html */
+html{
+    overflow: hidden;
+}
+
+.canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 65px;
+}
+
+#keyboardCanvas {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
 .type_test {
     text-align: center;
 }
@@ -7,7 +24,7 @@
     width: 500px;
     font-size: 20px;
     padding: 10px;
-    border: 2px solid rgba(255, 165, 0, 0.4);
+    border: 2px solid #88BFD0;
     border-radius: 30px;
     color: #333;
     background-color: rgba(255, 255, 255, 0.6);
@@ -17,13 +34,13 @@
 }
 
 .input_box:focus {
-    border-color: #2E8B57;
+    border-color: #919AAB ;
     outline: none;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .input_box:hover {
-    border-color: orange;
+    border-color: #919AAB;
 }
 
 .input_box::before {
@@ -218,7 +235,7 @@
     }
 }
 
-/* register.html */
+/* reg_log.html */
 .reg_log {
     margin-top: 100px;
     padding: 0 3%;
