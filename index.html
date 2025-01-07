@@ -14,10 +14,16 @@
     <link rel="icon" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+          rel="stylesheet">
+
     <link rel="stylesheet" href="CSS/common_styles.css">
     <link rel="stylesheet" href="CSS/specific_styles.css">
     <script type="text/javascript" src="JS/common_scripts.js"></script>
     <script type="text/javascript" src="JS/specific_scripts.js" defer></script>
+
 </head>
 
 <body class="body">
@@ -25,8 +31,8 @@
 <!-- Header Section -->
 <header class="nav_bar">
     <nav class="nav_bar_left">
-        <h1><a class="logo" href="index.html"><em>FuryType</em></a></h1>
         <span class="logo-icon" id="themeToggle" onclick="toggle_mode()">⌘</span>
+        <h1><a class="logo" href="index.html">FuryType</a></h1>
     </nav>
 
     <nav class="nav_bar_right">
@@ -46,17 +52,13 @@
 <!-- Main Section -->
 <main>
     <h2 class="main_heading">Test Your Speed</h2>
-    <form class="type_test">
-        <label>
-            <input id="typingInput" class="input_box" type="text" placeholder="Start Typing Text Here" required>
-        </label>
-    </form>
+    <div id="typeTest" class="type_test_area">
+    </div>
 
     <div class="canvas-wrapper">
         <canvas id="keyboardCanvas"></canvas>
     </div>
 </main>
-
 </body>
 
 </html>

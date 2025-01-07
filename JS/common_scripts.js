@@ -1,6 +1,6 @@
 window.onload = function() {
+    document.body.offsetHeight;
     const logoIcon = document.getElementById("themeToggle");
-
     let currentRotation = parseInt(logoIcon.getAttribute('data-rotation') || '0');
     if (currentRotation === 0) {
         currentRotation = 45;
@@ -9,40 +9,45 @@ window.onload = function() {
     }
 };
 
+// theme switcher
 function toggle_mode() {
     const bodyElement = document.getElementsByTagName("body")[0];
-    const paragraphElement = document.querySelector(".paragraph");
-    const typingMetricsElement = document.querySelector(".typing_metrics");
     const logoIcon = document.getElementById("themeToggle");
+    const linkElements = document.querySelectorAll("a");
 
     let currentRotation = parseInt(logoIcon.getAttribute('data-rotation') || '0');
-
     currentRotation += 360;
 
     logoIcon.style.transform = `rotate(${currentRotation}deg)`;
-
     logoIcon.setAttribute('data-rotation', currentRotation);
 
     if (bodyElement.classList.contains("body2")) {
         bodyElement.classList.remove("body2");
         bodyElement.classList.add("body");
 
-        paragraphElement.classList.add("dark-mode-paragraph");
-        paragraphElement.classList.remove("light-mode-paragraph");
-        typingMetricsElement.classList.add("dark-mode-metrics");
-        typingMetricsElement.classList.remove("light-mode-metrics");
+        linkElements.forEach(link => {
+            link.classList.add("dark-mode-link");
+            link.classList.remove("light-mode-link");
+        });
 
+        currentTheme = 'dark';
     } else {
         bodyElement.classList.remove("body");
         bodyElement.classList.add("body2");
 
-        paragraphElement.classList.add("light-mode-paragraph");
-        paragraphElement.classList.remove("dark-mode-paragraph");
-        typingMetricsElement.classList.add("light-mode-metrics");
-        typingMetricsElement.classList.remove("dark-mode-metrics");
+        linkElements.forEach(link => {
+            link.classList.add("light-mode-link");
+            link.classList.remove("dark-mode-link");
+        });
+
+        currentTheme = 'light';
     }
+
+    drawKeyboard(currentTheme);
 }
 
+
+// Location and Weather details
 const geocodeApiKey = '4c917072083a4502a4e90947fab8ddf1';
 const weatherApiUrl = 'https://api.open-meteo.com/v1/forecast';
 
