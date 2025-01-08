@@ -1,7 +1,8 @@
+@import url("fonts.css");
+
 /* Global Styles */
 html {
-    overflow: hidden;
-    font-family: "Jost", serif;
+    font-family: "Jost", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     user-select: none;
@@ -78,7 +79,8 @@ h1, h3 {
 .main_heading {
     text-align: center;
     font-size: 35px;
-    font-family: 'Helvetica Neue', serif;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
 }
 
 .greeting {

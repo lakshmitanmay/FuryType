@@ -3,13 +3,29 @@ const testText = "The intrepid explorer navigated the labyrinthine cave, their h
 
 // Typing Test State Variables
 let currentIndex = 0;
+let totalTime = 60; // Total time for the test in seconds
+let timeLeft = totalTime;
+let correctChars = 0;
+let totalChars = 0;
+let timerInterval = null;
+let timerStarted = false; // Flag to track if the timer has started
 
 // Initialize Typing Test
 function initializeTypingTest() {
+    currentIndex = 0;
+    correctChars = 0;
+    totalChars = 0;
+    timeLeft = totalTime;
+    updateMetrics(0, 100); // Reset metrics display
+
+    // Reset time bar and hide it initially
+    const timeBar = document.getElementById('timeBar');
+    timeBar.style.width = '100%';
+    timeBar.style.visibility = 'hidden';  // Hide time bar initially
+
+    // Initialize spans and caret
     const typeTest = document.getElementById('typeTest');
     typeTest.innerHTML = '';
-
-    // Render Text as Spans
     testText.split('').forEach((char) => {
         const span = document.createElement('span');
         span.textContent = char;
@@ -17,79 +33,152 @@ function initializeTypingTest() {
         typeTest.appendChild(span);
     });
 
-    // Add Caret Element
     const caret = document.createElement('div');
     caret.classList.add('caret');
     typeTest.appendChild(caret);
+    setTimeout(() => updateCaretPosition(caret, typeTest.querySelector('span')), 0);
 
-    // Position the caret at the start after DOM rendering
-    setTimeout(() => {
-        const firstSpan = typeTest.querySelector('span');
-        updateCaretPosition(caret, firstSpan);
-    }, 0);
-
-    // Add Key Listener
     document.addEventListener('keydown', (event) => handleTyping(event, caret));
 }
 
+// Handle Typing Logic
+const highlightTimeouts = {}; // Tracks active timeouts for each key
+const keyStates = {}; // Tracks the current state of each key ('correct' or 'incorrect')
+
 function handleTyping(event, caret) {
+    if (!timerStarted) {
+        startTimer();
+        timerStarted = true;
+
+        const timeBar = document.getElementById('timeBar');
+        timeBar.style.visibility = 'visible';
+    }
+
     const typeTest = document.getElementById('typeTest');
     const spans = typeTest.querySelectorAll('span');
 
-    // Stop if test is done
     if (currentIndex >= testText.length) return;
 
-    // Ignore non-character keys
     if (event.key.length > 1 && event.key !== 'Backspace') return;
 
     const currentChar = testText[currentIndex];
-    const typedChar = event.key;
+    const typedChar = event.key.toLowerCase();
 
     // Handle Backspace
-    if (typedChar === 'Backspace' && currentIndex > 0) {
+    if (typedChar === 'backspace' && currentIndex > 0) {
         currentIndex--;
         spans[currentIndex].classList.remove('correct', 'incorrect');
         spans[currentIndex].classList.add('untyped');
-        // Ensure the caret position updates correctly
         updateCaretPosition(caret, spans[currentIndex]);
-
-        // Remove the key from the incorrect set if backspace is used
-        incorrectKeys.delete(currentChar.toLowerCase());
-        drawKeyboard(currentTheme); // Re-render keyboard after backspace
         return;
     }
 
-    // Check if correct or incorrect
-    if (typedChar === currentChar) {
-        spans[currentIndex].classList.remove('untyped');
-        spans[currentIndex].classList.add('correct');
-        // Remove from incorrect set if typed correctly
-        incorrectKeys.delete(currentChar.toLowerCase());
-    } else if (typedChar.length === 1) {
-        spans[currentIndex].classList.remove('untyped');
-        spans[currentIndex].classList.add('incorrect');
-        // Add incorrect key to the pressed keys set
-        incorrectKeys.add(typedChar.toLowerCase());
-        // Set a timeout to remove the incorrect key highlight after a short period
-        setTimeout(() => {
-            incorrectKeys.delete(typedChar.toLowerCase());
-            drawKeyboard(currentTheme); // Re-render the keyboard
-        }, 100); // Remove highlight after 1 second
+    totalChars++;
+
+    function highlightKey(key, isCorrect) {
+        // Clear any existing timeout for the key
+        if (highlightTimeouts[key]) {
+            clearTimeout(highlightTimeouts[key]);
+            delete highlightTimeouts[key];
+        }
+
+        // Ensure priority: Incorrect keys take precedence
+        if (isCorrect && keyStates[key] === 'incorrect') return;
+
+        if (!isCorrect && keyStates[key] === 'correct') {
+            // If switching from correct to incorrect, remove correct state
+            pressedKeys.delete(key);
+        }
+
+        // Update key state
+        keyStates[key] = isCorrect ? 'correct' : 'incorrect';
+
+        // Add the key to the respective set
+        if (isCorrect) {
+            pressedKeys.add(key);
+            incorrectKeys.delete(key);
+        } else {
+            incorrectKeys.add(key);
+            pressedKeys.delete(key);
+        }
+
+        drawKeyboard(currentTheme);
+
+        // Schedule removal of the highlight
+        highlightTimeouts[key] = setTimeout(() => {
+            // Clear the state and update visuals
+            if (isCorrect) {
+                pressedKeys.delete(key);
+            } else {
+                incorrectKeys.delete(key);
+            }
+            delete keyStates[key]; // Reset the key state
+            drawKeyboard(currentTheme);
+            delete highlightTimeouts[key];
+        }, 150); // Adjustable highlight duration
     }
 
-    // Move to the next character
+    // Handle typing logic
+    if (typedChar === currentChar.toLowerCase()) {
+        // Correct key: Only highlight if no incorrect key is triggered
+        if (!incorrectKeys.has(typedChar)) {
+            correctChars++;
+            spans[currentIndex].classList.replace('untyped', 'correct');
+            highlightKey(typedChar, true);
+        }
+    } else if (typedChar.length === 1) {
+        // Incorrect key: Override any correct key highlight
+        spans[currentIndex].classList.replace('untyped', 'incorrect');
+        highlightKey(typedChar, false);
+    }
+
     currentIndex++;
     if (currentIndex < testText.length) {
         updateCaretPosition(caret, spans[currentIndex]);
     }
 
-    drawKeyboard(currentTheme); // Re-render the keyboard to reflect changes
+    const wpm = calculateWPM(correctChars, totalTime - timeLeft);
+    const accuracy = calculateAccuracy(correctChars, totalChars);
+    updateMetrics(wpm, accuracy);
+}
+
+// Start Timer
+function startTimer() {
+    const timeBar = document.getElementById('timeBar');
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        const progress = (timeLeft / totalTime) * 100;
+        timeBar.style.width = `${progress}%`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up! Typing test completed.");
+        }
+    }, 1000);
 }
 
 // Update Caret Position
 function updateCaretPosition(caret, targetSpan) {
     caret.style.left = `${targetSpan.offsetLeft}px`;
     caret.style.top = `${targetSpan.offsetTop + targetSpan.offsetHeight / 2 - caret.offsetHeight / 2}px`;
+}
+
+// Calculate WPM
+function calculateWPM(correctChars, elapsedTime) {
+    if (elapsedTime === 0) return 0;
+    return Math.round((correctChars / 5) / (elapsedTime / 60)); // Words are ~5 chars
+}
+
+// Calculate Accuracy
+function calculateAccuracy(correctChars, totalChars) {
+    if (totalChars === 0) return 100;
+    return Math.round((correctChars / totalChars) * 100);
+}
+
+// Update Metrics Display
+function updateMetrics(wpm, accuracy) {
+    document.getElementById('wpm').textContent = `${wpm}`;
+    document.getElementById('accuracy').textContent = `${accuracy}%`;
 }
 
 // Keyboard Visualization Logic
