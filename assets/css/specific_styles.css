@@ -19,12 +19,13 @@
     font-size: 1.5rem;
     line-height: 2rem;
     position: relative;
-    margin: 50px auto 0;
+    margin: 65px auto 0;
     width: 90%;
     max-width: 800px;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow: visible;
+    height: auto;
 }
 
 .type_test_area span {
@@ -71,7 +72,7 @@ body.body2 .correct {
     left: 0;
     width: 100%;
     height: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #timeBar {
@@ -81,61 +82,35 @@ body.body2 .correct {
 }
 
 #typingMetrics {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
     white-space: pre-wrap;
     word-wrap: break-word;
     display: flex;
-    justify-content: center; /* Center-align the metrics */
+    justify-content: center;
     align-items: center;
-    gap: 20px; /* Adds proper spacing between the span elements */
+    margin-bottom: 20px;
+    gap: 10px;
     font-size: 20px;
-    font-family: "Ubuntu Sans Mono", monospace;
-    font-weight: 500;
-    color: #3D505A;
-    margin-bottom: -35px;
-    margin-right: 700px;
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    color: #88BFD0;
+    border-radius: 15px;
+    background: #2E3440;
+    width: 200px;
+    padding: 5px;
 }
 
-.input_box {
-    width: 500px;
-    font-size: 20px;
-    padding: 10px;
-    border: 2px solid #88BFD0;
-    border-radius: 30px;
-    color: #333;
-    background-color: rgba(255, 255, 255, 0.6);
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-    position: relative;
-    z-index: 1;
+#typingMetrics.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
-.input_box:focus {
-    border-color: #919AAB;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.8);
+body.body2 #typingMetrics {
+    color: #8FBCBB;
+    background: #D8DEE9;
 }
-
-.input_box:hover {
-    border-color: #919AAB;
-}
-
-.input_box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 165, 0, 0.05);
-    border-radius: 30px;
-    z-index: -1;
-    transition: background 0.3s ease;
-}
-
-.input_box:hover::before,
-.input_box:focus::before {
-    background: rgba(255, 165, 0, 0.1);
-}
-
 
 /* profile.php */
 .metrics {

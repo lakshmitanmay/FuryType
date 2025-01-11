@@ -1,155 +1,158 @@
-// Sample Text for Typing Test
 const testText = "The intrepid explorer navigated the labyrinthine cave, their heart filled with a sanguine fervor. Obsidian shards glinted in the ethereal light filtering through the celestial opening. Despite the melancholic gloom, a sense of serendipity pervaded the air. The zephyr whispered through the cavern, carrying the ephemeral scent of unknown blooms.";
 
-// Typing Test State Variables
 let currentIndex = 0;
-let totalTime = 60; // Total time for the test in seconds
+let totalTime = 30;
 let timeLeft = totalTime;
 let correctChars = 0;
 let totalChars = 0;
 let timerInterval = null;
-let timerStarted = false; // Flag to track if the timer has started
+let timerStarted = false;
 
-// Initialize Typing Test
+
 function initializeTypingTest() {
     currentIndex = 0;
     correctChars = 0;
     totalChars = 0;
     timeLeft = totalTime;
-    updateMetrics(0, 100); // Reset metrics display
+    updateMetrics(0, 100);
 
-    // Reset time bar and hide it initially
     const timeBar = document.getElementById('timeBar');
+    timeBar.style.visibility = 'hidden';
     timeBar.style.width = '100%';
-    timeBar.style.visibility = 'hidden';  // Hide time bar initially
 
-    // Initialize spans and caret
     const typeTest = document.getElementById('typeTest');
     typeTest.innerHTML = '';
+
     testText.split('').forEach((char) => {
         const span = document.createElement('span');
         span.textContent = char;
         span.classList.add('untyped');
         typeTest.appendChild(span);
     });
-
     const caret = document.createElement('div');
     caret.classList.add('caret');
     typeTest.appendChild(caret);
-    setTimeout(() => updateCaretPosition(caret, typeTest.querySelector('span')), 0);
+    updateCaretPosition(caret, typeTest.querySelector('span.untyped'));
+
+    const typingMetrics = document.createElement('div');
+    typingMetrics.id = 'typingMetrics';
+    typingMetrics.innerHTML = `
+        <span id="wpm">0</span>
+        <span id="accuracy">0%</span>
+    `;
+    typingMetrics.style.position = 'absolute';
+    typingMetrics.style.top = '-55px';
+    typingMetrics.style.left = '0';
+    typeTest.appendChild(typingMetrics);
+    typingMetrics.classList.remove('visible');
+
+
 
     document.addEventListener('keydown', (event) => handleTyping(event, caret));
 }
 
-// Handle Typing Logic
-const highlightTimeouts = {}; // Tracks active timeouts for each key
-const keyStates = {}; // Tracks the current state of each key ('correct' or 'incorrect')
+const highlightTimeouts = {};
+const keyStates = {};
+let lastKey = null;
+let longPressHandled = false;
+let pressedKey = null;
 
 function handleTyping(event, caret) {
-    if (!timerStarted) {
+    const validKeyRegex = /^[a-zA-Z0-9 .,;'/[\]\\\-_=+{}|:>?<()*&^!@#$%~`]$/;
+    const typedChar = event.key;
+    if ((!validKeyRegex.test(typedChar) && event.key !== 'Backspace') || event.ctrlKey || event.altKey || event.metaKey) {
+        return;
+    }
+    if (typedChar === pressedKey) {
+        return;
+    }
+    pressedKey = typedChar;
+    if (!timerStarted && validKeyRegex.test(typedChar) && typedChar !== ' ' && typedChar !== 'Backspace') {
         startTimer();
         timerStarted = true;
-
         const timeBar = document.getElementById('timeBar');
         timeBar.style.visibility = 'visible';
+        typingMetrics.classList.remove('visible');
     }
-
     const typeTest = document.getElementById('typeTest');
     const spans = typeTest.querySelectorAll('span');
-
     if (currentIndex >= testText.length) return;
-
-    if (event.key.length > 1 && event.key !== 'Backspace') return;
-
     const currentChar = testText[currentIndex];
-    const typedChar = event.key.toLowerCase();
-
-    // Handle Backspace
-    if (typedChar === 'backspace' && currentIndex > 0) {
+    if (typedChar === 'Backspace' && currentIndex > 0) {
         currentIndex--;
         spans[currentIndex].classList.remove('correct', 'incorrect');
         spans[currentIndex].classList.add('untyped');
         updateCaretPosition(caret, spans[currentIndex]);
         return;
     }
-
     totalChars++;
-
     function highlightKey(key, isCorrect) {
-        // Clear any existing timeout for the key
-        if (highlightTimeouts[key]) {
-            clearTimeout(highlightTimeouts[key]);
-            delete highlightTimeouts[key];
+        const normalizedKey = key.toLowerCase();
+        const keyMap = {
+            ' ': 'space',
+            '.': '.',
+            ',': ',',
+            ';': ';',
+            "'": "'",
+            '/': '/',
+            '[': '[',
+            ']': ']',
+        };
+        const displayKey = keyMap[normalizedKey] || normalizedKey;
+        if (highlightTimeouts[displayKey]) {
+            clearTimeout(highlightTimeouts[displayKey]);
+            delete highlightTimeouts[displayKey];
         }
-
-        // Ensure priority: Incorrect keys take precedence
-        if (isCorrect && keyStates[key] === 'incorrect') return;
-
-        if (!isCorrect && keyStates[key] === 'correct') {
-            // If switching from correct to incorrect, remove correct state
-            pressedKeys.delete(key);
-        }
-
-        // Update key state
-        keyStates[key] = isCorrect ? 'correct' : 'incorrect';
-
-        // Add the key to the respective set
-        if (isCorrect) {
-            pressedKeys.add(key);
-            incorrectKeys.delete(key);
+        if (!isCorrect) {
+            incorrectKeys.add(displayKey);
+            pressedKeys.delete(displayKey);
         } else {
-            incorrectKeys.add(key);
-            pressedKeys.delete(key);
-        }
-
-        drawKeyboard(currentTheme);
-
-        // Schedule removal of the highlight
-        highlightTimeouts[key] = setTimeout(() => {
-            // Clear the state and update visuals
-            if (isCorrect) {
-                pressedKeys.delete(key);
-            } else {
-                incorrectKeys.delete(key);
+            if (!incorrectKeys.has(displayKey)) {
+                pressedKeys.add(displayKey);
             }
-            delete keyStates[key]; // Reset the key state
-            drawKeyboard(currentTheme);
-            delete highlightTimeouts[key];
-        }, 150); // Adjustable highlight duration
-    }
-
-    // Handle typing logic
-    if (typedChar === currentChar.toLowerCase()) {
-        // Correct key: Only highlight if no incorrect key is triggered
-        if (!incorrectKeys.has(typedChar)) {
-            correctChars++;
-            spans[currentIndex].classList.replace('untyped', 'correct');
-            highlightKey(typedChar, true);
         }
+        drawKeyboard(currentTheme);
+        highlightTimeouts[displayKey] = setTimeout(() => {
+            if (isCorrect) {
+                pressedKeys.delete(displayKey);
+            } else {
+                incorrectKeys.delete(displayKey);
+            }
+            delete highlightTimeouts[displayKey];
+            drawKeyboard(currentTheme);
+        }, 175);
+    }
+    if (typedChar === currentChar) {
+        correctChars++;
+        spans[currentIndex].classList.replace('untyped', 'correct');
+        highlightKey(typedChar, true);
+        currentIndex++;
     } else if (typedChar.length === 1) {
-        // Incorrect key: Override any correct key highlight
         spans[currentIndex].classList.replace('untyped', 'incorrect');
         highlightKey(typedChar, false);
+        currentIndex++;
     }
-
-    currentIndex++;
     if (currentIndex < testText.length) {
         updateCaretPosition(caret, spans[currentIndex]);
     }
-
     const wpm = calculateWPM(correctChars, totalTime - timeLeft);
     const accuracy = calculateAccuracy(correctChars, totalChars);
     updateMetrics(wpm, accuracy);
 }
 
-// Start Timer
+document.addEventListener('keyup', (event) => {
+    if (event.key === pressedKey) {
+        pressedKey = null;
+    }
+});
+
 function startTimer() {
     const timeBar = document.getElementById('timeBar');
+    timeBar.style.visibility = 'visible';
     timerInterval = setInterval(() => {
         timeLeft--;
         const progress = (timeLeft / totalTime) * 100;
         timeBar.style.width = `${progress}%`;
-
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             alert("Time's up! Typing test completed.");
@@ -157,31 +160,33 @@ function startTimer() {
     }, 1000);
 }
 
-// Update Caret Position
+
+
 function updateCaretPosition(caret, targetSpan) {
-    caret.style.left = `${targetSpan.offsetLeft}px`;
-    caret.style.top = `${targetSpan.offsetTop + targetSpan.offsetHeight / 2 - caret.offsetHeight / 2}px`;
+    if (targetSpan) {
+        caret.style.left = `${targetSpan.offsetLeft}px`;
+        caret.style.top = `${targetSpan.offsetTop}px`;
+    }
 }
 
-// Calculate WPM
 function calculateWPM(correctChars, elapsedTime) {
     if (elapsedTime === 0) return 0;
-    return Math.round((correctChars / 5) / (elapsedTime / 60)); // Words are ~5 chars
+    return Math.round((correctChars / 5) / (elapsedTime / 60));
 }
 
-// Calculate Accuracy
 function calculateAccuracy(correctChars, totalChars) {
     if (totalChars === 0) return 100;
     return Math.round((correctChars / totalChars) * 100);
 }
 
-// Update Metrics Display
 function updateMetrics(wpm, accuracy) {
-    document.getElementById('wpm').textContent = `${wpm}`;
-    document.getElementById('accuracy').textContent = `${accuracy}%`;
+    if (!typingMetrics.classList.contains('visible')) {
+        typingMetrics.classList.add('visible');
+    }
+    document.getElementById('wpm').textContent = `${wpm}wpm  |`;
+    document.getElementById('accuracy').textContent = `${accuracy}%acc`;
 }
 
-// Keyboard Visualization Logic
 const canvas = document.getElementById('keyboardCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -224,74 +229,82 @@ let pressedKeys = new Set();
 let incorrectKeys = new Set();
 let currentTheme = 'dark';
 
+let shiftPressed = false;
+
 function drawKeyboard(theme) {
-    ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
+    document.fonts.ready.then(() => {
+        ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
 
-    const themeColors = {
-        dark: {
-            keyColor: 'rgb(46,52,64)',
-            pressedKeyColor: 'rgb(136,192,208)',
-            incorrectKeyColor: 'rgb(191,97,106)',
-            keyTextColor: 'rgb(145,154,171)',
-        },
-        light: {
-            keyColor: 'rgb(216,222,233)',
-            pressedKeyColor: 'rgb(143,188,187)',
-            incorrectKeyColor: 'rgb(191,97,106)',
-            keyTextColor: 'rgb(105,119,145)',
-        }
-    };
-
-    let y = startY;
-    keys.forEach((row) => {
-        let totalRowWidth = 0;
-        row.forEach(({label, size}) => {
-            totalRowWidth += keyWidth * size + keySpacing;
-        });
-        totalRowWidth -= keySpacing;
-
-        let x = (canvas.width / scaleFactor - totalRowWidth) / 2;
-
-        row.forEach(({label, size}) => {
-            const width = keyWidth * size;
-            const height = keyHeight;
-
-            const keyColor = themeColors[theme].keyColor;
-            const pressedKeyColor = themeColors[theme].pressedKeyColor;
-            const incorrectKeyColor = themeColors[theme].incorrectKeyColor;
-            const keyTextColor = themeColors[theme].keyTextColor;
-
-            let keyFillColor = keyColor;
-            if (incorrectKeys.has(label)) {
-                keyFillColor = incorrectKeyColor;
-            } else if (pressedKeys.has(label)) {
-                keyFillColor = pressedKeyColor;
+        const themeColors = {
+            dark: {
+                keyColor: 'rgb(46,52,64)',
+                pressedKeyColor: 'rgb(136,192,208)',
+                incorrectKeyColor: 'rgb(191,97,106)',
+                keyTextColor: 'rgb(145,154,171)',
+            },
+            light: {
+                keyColor: 'rgb(216,222,233)',
+                pressedKeyColor: 'rgb(143,188,187)',
+                incorrectKeyColor: 'rgb(191,97,106)',
+                keyTextColor: 'rgb(105,119,145)',
             }
+        };
 
-            ctx.fillStyle = keyFillColor;
-            ctx.beginPath();
-            ctx.roundRect(x, y, width, height, radius);
-            ctx.closePath();
-            ctx.fill();
+        let y = startY;
+        keys.forEach((row) => {
+            let totalRowWidth = 0;
+            row.forEach(({ label, size }) => {
+                totalRowWidth += keyWidth * size + keySpacing;
+            });
+            totalRowWidth -= keySpacing;
 
-            ctx.fillStyle = keyTextColor;
-            ctx.font = '16px Ubuntu Sans Mono';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(label, x + width / 2, y + keyHeight / 2);
+            let x = (canvas.width / scaleFactor - totalRowWidth) / 2;
 
-            x += width + keySpacing;
+            row.forEach(({ label, size }) => {
+                const width = keyWidth * size;
+                const height = keyHeight;
+
+                const keyColor = themeColors[theme].keyColor;
+                const pressedKeyColor = themeColors[theme].pressedKeyColor;
+                const incorrectKeyColor = themeColors[theme].incorrectKeyColor;
+                const keyTextColor = themeColors[theme].keyTextColor;
+
+                let keyFillColor = keyColor;
+                if (incorrectKeys.has(label)) {
+                    keyFillColor = incorrectKeyColor;
+                } else if (pressedKeys.has(label)) {
+                    keyFillColor = pressedKeyColor;
+                }
+
+                ctx.fillStyle = keyFillColor;
+                ctx.beginPath();
+                ctx.roundRect(x, y, width, height, radius);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = keyTextColor;
+                ctx.font = '16px "Ubuntu Sans Mono"';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                const displayLabel = shiftPressed ? label.toUpperCase() : label;
+
+                ctx.fillText(displayLabel, x + width / 2, y + keyHeight / 2);
+
+                x += width + keySpacing;
+            });
+
+            y += keyHeight + keySpacing;
         });
-
-        y += keyHeight + keySpacing;
     });
 }
 
 function handleKeyDown(event) {
     let key = event.key.toLowerCase();
     if (key === " ") key = "space";
-    if (!event.ctrlKey && !event.altKey && !event.metaKey) {
-        pressedKeys.add(key);
+
+    if (event.key === "Shift") {
+        shiftPressed = true;
         drawKeyboard(currentTheme);
     }
 }
@@ -299,8 +312,9 @@ function handleKeyDown(event) {
 function handleKeyUp(event) {
     let key = event.key.toLowerCase();
     if (key === " ") key = "space";
-    if (!event.ctrlKey && !event.altKey && !event.metaKey) {
-        pressedKeys.delete(key);
+
+    if (event.key === "Shift") {
+        shiftPressed = false;
         drawKeyboard(currentTheme);
     }
 }
@@ -308,8 +322,24 @@ function handleKeyUp(event) {
 window.addEventListener('keydown', handleKeyDown);
 window.addEventListener('keyup', handleKeyUp);
 
-// Initialize Both Typing Test and Keyboard Visualization
 document.addEventListener('DOMContentLoaded', () => {
-    initializeTypingTest();
-    drawKeyboard(currentTheme);
+    document.fonts.ready.then(() => {
+        initializeTypingTest();
+        drawKeyboard(currentTheme);
+    });
 });
+
+// tutorial.html
+function showPopup(event, text) {
+    const popup = document.getElementById('popup');
+    popup.style.left = `${event.pageX + 10}px`;
+    popup.style.top = `${event.pageY + 10}px`;
+    popup.textContent = text;
+    popup.style.display = 'block';
+}
+
+function hidePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}
+

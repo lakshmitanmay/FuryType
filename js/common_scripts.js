@@ -48,13 +48,12 @@ function toggle_mode() {
 
 
 // Location and Weather details
+// Location and Weather Details
 const geocodeApiKey = '4c917072083a4502a4e90947fab8ddf1';
 const weatherApiUrl = 'https://api.open-meteo.com/v1/forecast';
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const locationNameElem = document.getElementById('location-name');
-    const typingInputElem = document.getElementById('typingInput');
 
     async function getLocationName(lat, lon) {
         try {
@@ -68,11 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const city = components.city || components.town || components.state || "Unknown City";
                 return `${area}, ${city}`;
             } else {
-                return "Location name not found";
+                throw new Error("Location name not found");
             }
         } catch (error) {
             console.error("Error fetching location name:", error.message);
-            return "Error fetching location details.";
+            throw error;
         }
     }
 
@@ -86,11 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const temperature = data.current_weather.temperature;
                 return `${temperature}°C`;
             } else {
-                return "Weather data not available";
+                throw new Error("Weather data not available");
             }
         } catch (error) {
             console.error("Error fetching weather data:", error.message);
-            return "Error fetching weather details.";
+            throw error;
         }
     }
 
@@ -98,37 +97,27 @@ document.addEventListener("DOMContentLoaded", function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
-                    const {latitude, longitude} = position.coords;
+                    const { latitude, longitude } = position.coords;
 
-                    const locationName = await getLocationName(latitude, longitude);
-                    const weather = await getWeather(latitude, longitude);
+                    try {
+                        const locationName = await getLocationName(latitude, longitude);
+                        const weather = await getWeather(latitude, longitude);
 
-                    locationNameElem.classList.add('fade-out'); // Fade out
-                    setTimeout(() => {
-                        locationNameElem.textContent = `${locationName} • ${weather}`;
-                        locationNameElem.classList.remove('fade-out');
-                        locationNameElem.classList.add('fade-in'); // Fade in
-                    }, 2000); // Delay for 2 seconds before fading in
+                        locationNameElem.classList.add('fade-out');
+                        setTimeout(() => {
+                            locationNameElem.textContent = `${locationName} • ${weather}`;
+                            locationNameElem.classList.remove('fade-out');
+                            locationNameElem.classList.add('fade-in');
+                        }, 2000);
+                    } catch (error) {
+                    }
                 },
                 (error) => {
                     console.error("Geolocation error:", error.message);
-                    switch (error.code) {
-                        case error.PERMISSION_DENIED:
-                            locationNameElem.textContent = "Permission to access location was denied.";
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            locationNameElem.textContent = "Location information is unavailable.";
-                            break;
-                        case error.TIMEOUT:
-                            locationNameElem.textContent = "The request to get user location timed out.";
-                            break;
-                        default:
-                            locationNameElem.textContent = "An unknown error occurred while fetching location.";
-                    }
                 }
             );
         } else {
-            locationNameElem.textContent = "Geolocation is not supported by your browser.";
+            console.error("Geolocation is not supported by your browser.");
         }
     }
 
@@ -143,12 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     locationNameElem.textContent = greetingMessage;
-
     setTimeout(() => {
         getUserLocation();
     }, 1500);
-
-    typingInputElem.focus();
 });
 
 const style = document.createElement('style');
