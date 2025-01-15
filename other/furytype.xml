@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="furytype.xsl"?>
+<furytype xmlns="http://example.com/furytype" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://example.com/furytype furytype.xsd">
+    <user>
+        <id>1</id>
+        <name>John Doe</name>
+        <score>95</score>
+        <time>30:45</time>
+    </user>
+    <user>
+        <id>2</id>
+        <name>Jane Smith</name>
+        <score>88</score>
+        <time>25:20</time>
+    </user>
+    <user>
+        <id>3</id>
+        <name>Andrew Brown</name>
+        <score>92</score>
+        <time>27:30</time>
+    </user>
+    <user>
+        <id>4</id>
+        <name>Matthew Lee</name>
+        <score>80</score>
+        <time>24:05</time>
+    </user>
+    <user>
+        <id>5</id>
+        <name>Oliver Jackson</name>
+        <score>85</score>
+        <time>26:00</time>
+    </user>
+    <user>
+        <id>6</id>
+        <name>Emily Chen</name>
+        <score>89</score>
+        <time>25:50</time>
+    </user>
+    <user>
+        <id>7</id>
+        <name>Lucas Brooks</name>
+        <score>91</score>
+        <time>28:15</time>
+    </user>
+    <user>
+        <id>8</id>
+        <name>Ava Davis</name>
+        <score>90</score>
+        <time>26:40</time>
+    </user>
+    <user>
+        <id>9</id>
+        <name>Sophia Johnson</name>
+        <score>93</score>
+        <time>28:40</time>
+    </user>
+    <user>
+        <id>10</id>
+        <name>William Miller</name>
+        <score>87</score>
+        <time>25:15</time>
+    </user>
+</furytype>

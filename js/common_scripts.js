@@ -1,15 +1,60 @@
-window.onload = function() {
+window.onload = function () {
     document.body.offsetHeight;
+    startPageAnimation();
+
     const logoIcon = document.getElementById("themeToggle");
-    let currentRotation = parseInt(logoIcon.getAttribute('data-rotation') || '0');
-    if (currentRotation === 0) {
-        currentRotation = 45;
+    let currentRotation = parseInt(logoIcon.getAttribute("data-rotation") || "0");
+
+    if (isNaN(currentRotation) || currentRotation === 0) {
+        currentRotation = 405; // Default rotation if none set
         logoIcon.style.transform = `rotate(${currentRotation}deg)`;
-        logoIcon.setAttribute('data-rotation', currentRotation);
+        logoIcon.setAttribute("data-rotation", currentRotation);
     }
 };
 
-// theme switcher
+// Page Animation
+function startPageAnimation() {
+    const body = document.querySelector("body");
+    const logoIcon = document.getElementById("themeToggle");
+    const mainContent = document.querySelector("main");
+    const header = document.querySelector("header");
+    const locationWeather = document.querySelector(".location-weather");
+
+    body.style.opacity = "0";
+
+    setTimeout(() => {
+        body.style.transition = "transform 0.2s ease-in-out, opacity 0.2s ease-in-out";
+        body.style.opacity = "1";
+    }, 100);
+
+    setTimeout(() => {
+        logoIcon.style.transition = "transform 1s ease-out";
+        logoIcon.style.transform = `rotate(495deg)`;
+    }, 300);
+
+    header.style.opacity = "0";
+    header.style.transform = "translateY(-50px)";
+    locationWeather.style.opacity = "0";
+    locationWeather.style.transform = "translateY(-50px)";
+
+    setTimeout(() => {
+        header.style.transition = "opacity 1s ease-in-out, transform 1s ease-in-out";
+        locationWeather.style.transition = "opacity 1s ease-in-out, transform 1s ease-in-out";
+
+        header.style.opacity = "1";
+        header.style.transform = "translateY(0)";
+        locationWeather.style.opacity = "1";
+        locationWeather.style.transform = "translateY(0)";
+    }, 600);
+
+    mainContent.style.opacity = "0";
+    setTimeout(() => {
+        mainContent.style.transition = "opacity 1s ease-in-out";
+        mainContent.style.opacity = "1";
+    }, 1000);
+}
+
+// Theme Toggle
 function toggle_mode() {
     const bodyElement = document.getElementsByTagName("body")[0];
     const logoIcon = document.getElementById("themeToggle");
@@ -18,6 +63,7 @@ function toggle_mode() {
     let currentRotation = parseInt(logoIcon.getAttribute('data-rotation') || '0');
     currentRotation += 360;
 
+    logoIcon.style.transition = "transform 0.3s ease-in-out";
     logoIcon.style.transform = `rotate(${currentRotation}deg)`;
     logoIcon.setAttribute('data-rotation', currentRotation);
 
@@ -48,7 +94,6 @@ function toggle_mode() {
 
 
 // Location and Weather details
-// Location and Weather Details
 const geocodeApiKey = '4c917072083a4502a4e90947fab8ddf1';
 const weatherApiUrl = 'https://api.open-meteo.com/v1/forecast';
 
@@ -97,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
-                    const { latitude, longitude } = position.coords;
+                    const {latitude, longitude} = position.coords;
 
                     try {
                         const locationName = await getLocationName(latitude, longitude);

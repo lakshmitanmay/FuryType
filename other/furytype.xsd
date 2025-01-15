@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://example.com/furytype"
+            xmlns="http://example.com/furytype"
+            xmlns:tns="http://example.com/furytype"
+            elementFormDefault="qualified">
+
+    <!-- Root element -->
+    <xsd:element name="furytype" type="tns:furytypeType"/>
+
+    <!-- Complex type definition -->
+    <xsd:complexType name="furytypeType">
+        <xsd:sequence>
+            <xsd:element name="user" type="tns:userType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- User element definition -->
+    <xsd:complexType name="userType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="score" type="xsd:int"/>
+            <xsd:element name="time" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

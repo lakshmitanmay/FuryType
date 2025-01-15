@@ -4,6 +4,8 @@
     src: url("../fonts/Ubuntu_Sans_Mono/UbuntuSansMono-VariableFont_wght.ttf") format("truetype");
     font-weight: 400 700;
     font-style: normal;
+    font-display: block;
+
 }
 
 @font-face {
@@ -11,6 +13,7 @@
     src: url("../fonts/Ubuntu_Sans_Mono/UbuntuSansMono-Italic-VariableFont_wght.ttf") format("truetype");
     font-weight: 400 700;
     font-style: italic;
+    font-display: block;
 }
 
 /* Jost */
@@ -19,6 +22,7 @@
     src: url("../fonts/Jost/Jost-VariableFont_wght.ttf") format("truetype");
     font-weight: 100 900; /* Supports weights from 100 to 900 */
     font-style: normal;
+    font-display: block;
 }
 
 @font-face {
@@ -26,4 +30,5 @@
     src: url("../fonts/Jost/Jost-Italic-VariableFont_wght.ttf") format("truetype");
     font-weight: 100 900; /* Supports weights from 100 to 900 */
     font-style: italic;
+    font-display: block;
 }
