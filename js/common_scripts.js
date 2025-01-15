@@ -6,7 +6,7 @@ window.onload = function () {
     let currentRotation = parseInt(logoIcon.getAttribute("data-rotation") || "0");
 
     if (isNaN(currentRotation) || currentRotation === 0) {
-        currentRotation = 405; // Default rotation if none set
+        currentRotation = 405;
         logoIcon.style.transform = `rotate(${currentRotation}deg)`;
         logoIcon.setAttribute("data-rotation", currentRotation);
     }
@@ -63,6 +63,9 @@ function toggle_mode() {
     let currentRotation = parseInt(logoIcon.getAttribute('data-rotation') || '0');
     currentRotation += 360;
 
+    const darkIcon = "./assets/images/dark_icon.png";
+    const lightIcon = "./assets/images/light_icon.png";
+
     logoIcon.style.transition = "transform 0.3s ease-in-out";
     logoIcon.style.transform = `rotate(${currentRotation}deg)`;
     logoIcon.setAttribute('data-rotation', currentRotation);
@@ -70,6 +73,7 @@ function toggle_mode() {
     if (bodyElement.classList.contains("body2")) {
         bodyElement.classList.remove("body2");
         bodyElement.classList.add("body");
+        logoIcon.src = darkIcon;
 
         linkElements.forEach(link => {
             link.classList.add("dark-mode-link");
@@ -80,6 +84,7 @@ function toggle_mode() {
     } else {
         bodyElement.classList.remove("body");
         bodyElement.classList.add("body2");
+        logoIcon.src = lightIcon;
 
         linkElements.forEach(link => {
             link.classList.add("light-mode-link");
